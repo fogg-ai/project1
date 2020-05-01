@@ -1,10 +1,10 @@
 org\itstep\service\service\UserGalleryService.class
 org\itstep\domain\UserGallery.class
-org\itstep\controller\MainController.class
 org\itstep\service\impl\UserGalleryImp.class
 org\itstep\service\mapper\EntityMapper.class
 org\itstep\service\mapper\UserGalleryMapper.class
 org\itstep\repository\UserGalleryRepository.class
 org\itstep\service\mapper\UserGalleryMapperImpl.class
 org\itstep\service\dto\UserGalleryDto.class
+org\itstep\controller\HomeController.class
 org\itstep\service\GenericService.class

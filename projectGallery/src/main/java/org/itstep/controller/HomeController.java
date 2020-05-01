@@ -2,6 +2,7 @@ package org.itstep.controller;
 
 import org.itstep.service.dto.UserGalleryDto;
 import org.itstep.service.service.UserGalleryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,11 +10,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class MainController {
+public class HomeController {
     private final UserGalleryService userGalleryService;
 
-
-    public MainController(UserGalleryService userGalleryService) {
+    @Autowired
+    public HomeController(UserGalleryService userGalleryService) {
         this.userGalleryService = userGalleryService;
     }
 

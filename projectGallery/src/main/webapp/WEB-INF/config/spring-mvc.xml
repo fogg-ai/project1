@@ -15,9 +15,8 @@
     <!--            conversion-service="conversionServiceFactoryBean" -->
     <mvc:annotation-driven  />
     <mvc:resources mapping="/static/**" location="/resources/" />
-    <mvc:resources mapping="/uploads/**" location="/uploads/" />
+
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/view/" p:suffix=".jsp"/>
-
 </beans>
