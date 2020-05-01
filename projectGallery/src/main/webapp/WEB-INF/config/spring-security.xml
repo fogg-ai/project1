@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sec="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security.xsd">
+
+    <sec:http auto-config="true" use-expressions="true">
+        <sec:intercept-url pattern="/**" access="permitAll()"/>
+<!--        <sec:logout logout-url="/logout" logout-success-url="/" delete-cookies="true"-->
+<!--                    invalidate-session="true"/>-->
+<!--        <sec:remember-me remember-me-parameter="rememberMe" key="rememberMe"></sec:remember-me>-->
+        <sec:form-login login-page="/" default-target-url="/" login-processing-url="/login"
+                        username-parameter="custom_username"
+                        password-parameter="custom_password"
+                        authentication-failure-url="/?error=notentry"/>
+    </sec:http>
+
+    <sec:authentication-manager>
+        <sec:authentication-provider />
+    </sec:authentication-manager>
+
+    <bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"></bean>
+</beans>
