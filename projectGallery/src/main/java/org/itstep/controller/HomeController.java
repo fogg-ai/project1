@@ -15,4 +15,8 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping(path="/gallery")
+    public String indexGallery(){
+        return "gallery";
+    }
 }

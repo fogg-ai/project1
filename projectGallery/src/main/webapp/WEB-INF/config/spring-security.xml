@@ -4,19 +4,27 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security.xsd">
 
     <sec:http auto-config="true" use-expressions="true">
+        <sec:intercept-url pattern="/login/**" access="permitAll()"/>
+        <sec:intercept-url pattern="/register/**" access="permitAll()"/>
+        <sec:intercept-url pattern="/gallery/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
         <sec:intercept-url pattern="/**" access="permitAll()"/>
-<!--        <sec:logout logout-url="/logout" logout-success-url="/" delete-cookies="true"-->
-<!--                    invalidate-session="true"/>-->
-<!--        <sec:remember-me remember-me-parameter="rememberMe" key="rememberMe"></sec:remember-me>-->
-        <sec:form-login login-page="/" default-target-url="/" login-processing-url="/login"
-                        username-parameter="custom_username"
-                        password-parameter="custom_password"
+
+        <sec:logout logout-url="/logout" logout-success-url="/" delete-cookies="true"
+                    invalidate-session="true"/>
+<!--&lt;!&ndash;        <sec:remember-me remember-me-parameter="rememberMe" key="rememberMe"></sec:remember-me>&ndash;&gt;-->
+        <sec:form-login login-page="/" default-target-url="/gallery" login-processing-url="/login"
+                        username-parameter="login"
+                        password-parameter="password"
                         authentication-failure-url="/?error=notentry"/>
     </sec:http>
 
     <sec:authentication-manager>
-        <sec:authentication-provider />
+        <sec:authentication-provider>
+            <sec:user-service>
+                <sec:user name="admin" password="{noop}admin" authorities="ROLE_ADMIN"/>
+            </sec:user-service>
+        </sec:authentication-provider>
     </sec:authentication-manager>
 
-    <bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"></bean>
+<!--    <bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"></bean>-->
 </beans>

@@ -1,4 +1,3 @@
-
 let log = new Vue({
     el: '#log',
     data: {

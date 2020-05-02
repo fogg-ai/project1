@@ -10,7 +10,7 @@
         <param-value>
             /WEB-INF/config/spring-mvc.xml
             /WEB-INF/config/spring-jdbc.xml
-<!--            /WEB-INF/config/spring-security.xml-->
+            /WEB-INF/config/spring-security.xml
         </param-value>
     </context-param>
 
@@ -72,7 +72,7 @@
     </filter>
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
-        <servlet-name>/</servlet-name>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>encodingFilter</filter-name>

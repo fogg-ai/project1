@@ -12,10 +12,9 @@
 //
 //@Component
 //public class CustomDetailsService implements UserDetailsService {
+
 //    @Autowired
-//    StudentRepository studentRepository;
-//    @Autowired
-//    TeacherRepository teacherRepository;
+//    UserGalleryRepository userGalleryRepository;
 //
 //    @Override
 //    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
