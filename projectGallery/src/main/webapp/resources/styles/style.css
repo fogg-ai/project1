@@ -138,7 +138,7 @@ form{
     font-family: sans-serif;
 }
 .fieldL{
-    margin-left: 37px;
+    margin-left: 36px;
 }
 
 .field{
@@ -152,7 +152,7 @@ form{
 }
 input{
     border:none;
-    padding: 5px 150px 5px 5px;
+    padding: 5px 50px 5px 5px;
     border-radius: 5px;
 }
 

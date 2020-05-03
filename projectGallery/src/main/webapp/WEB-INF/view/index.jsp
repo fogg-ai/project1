@@ -52,17 +52,21 @@
 
     </div>
     <div class="form reg">
-        <form class="modal" action="/register" v-show="reg" method="POST">
+        <form:form modelAttribute="userGalleryDto" class="modal" action="/register" v-show="reg" method="POST">
             <div class="modal-content">
 
                 <div class="field">
-                    <label>Login:<input class="fieldL" name="login" required/></label>
+                    <form:label path="login">Login:</form:label>
+                    <form:input path="login" required="required" class="fieldL"/>
+                    <h5><form:errors path="login" class="helper-text" data-error="wrong" data-success="right"/></h5>
                 </div>
                 <div class="field">
-                    <label>Password:<input class="fieldP" name="password" required type="password"/></label>
+                    <form:label path="password">Password:<form:input maxlength="16" path="password" type="password" required="required" class="fieldP"/></form:label>
+                    <h5><form:errors path="password" class="helper-text" data-error="wrong" data-success="right"/></h5>
                 </div>
                 <div class="field">
-                    <label>Email:<input class="fieldE" name="email" required type="email"/></label>
+                    <form:label path="email">Email:<form:input path="email" type="email" required="required" class="fieldE"/></form:label>
+                    <h5><form:errors path="email" class="helper-text" data-error="wrong" data-success="right"/></h5>
 
                     <sec:csrfInput/>
                 </div>
@@ -73,7 +77,7 @@
                 <button type="submit">Sing up
                 </button>
             </div>
-        </form>
+        </form:form>
     </div>
 
 </header>

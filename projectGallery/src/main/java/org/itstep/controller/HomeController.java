@@ -27,9 +27,7 @@ public class HomeController {
 
     @GetMapping(path="/")
     public String index(Model model){
-        UserGalleryDto userGalleryDto = new UserGalleryDto();
-        model.addAttribute("userGalleryDto",userGalleryDto);
-        System.out.println(userGalleryDto.getLogin());
+        model.addAttribute("userGalleryDto",new UserGalleryDto());
         return "index";
     }
 
@@ -37,7 +35,8 @@ public class HomeController {
     public String register(@Validated @ModelAttribute UserGalleryDto userGalleryDto,
                            BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return "/";
+            System.out.println(bindingResult);
+            return "index";
         }
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         userGalleryDto.setPassword(bCryptPasswordEncoder.encode(userGalleryDto.getPassword()));
