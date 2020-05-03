@@ -52,7 +52,20 @@
     background: #585656;
 }
 
+.h5Day{
+    margin-top: 10px;
+    width: 50px;
+    display: inline;
+    float: right;
+}
 
+.h5Night{
+    margin-top: 10px;
+    width: 50px;
+    display: inline;
+    float: right;
+    color: white;
+}
 .headerDay{
     width: 100%;
     height: 60px;
@@ -235,7 +248,7 @@
     float: right;
     top: 20px;
 }
-@media (max-width: 400px) {
+@media (max-width: 470px) {
     #checkbox{
         display: none;
     }

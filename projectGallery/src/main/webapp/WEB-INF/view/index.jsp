@@ -8,17 +8,22 @@
     <title>Gallery</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="<spring:url value="/static/styles/style.css"/>" rel="stylesheet"/>
-    <script src="<spring:url value="/static/js/vueJs.js"/>"> </script>
+    <script src="<spring:url value="/static/js/vueJs.js"/>"></script>
 </head>
 <body>
 
 
 <header id="log">
     <span class="name">𝒫𝑒𝓇𝓈𝑜𝓃 𝒢𝒶𝓁𝓁𝑒𝓇𝓎</span>
+    <sec:authorize access="isAnonymous()">
     <a class="aut" v-on:click="reg=!reg" href="#reg">Sing up</a>
     <a class="aut" v-on:click="log=!log" href="#login">Sing in</a>
+    </sec:authorize>
+    <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
+        <a class="aut" href="/gallery">Gallery</a>
+    </sec:authorize>
     <div class="form">
-        <form class="modal" action="/login" v-show="log" method="POST">
+        <form:form modelAttribute="userGalleryDto" class="modal" action="/login" v-show="log" method="POST">
             <div class="modal-content">
 
                 <div class="field">
@@ -36,13 +41,13 @@
 
             <div class="fieldSubmit">
                 <a type="submit" class="cancel" v-on:click="log=!log" href="#!">Cancel</a>
-                <button type="submit" >Sing in
+                <button type="submit">Sing in
                 </button>
             </div>
             <c:if test="${param.error == 'notentry'}">
                 Repeat the entry, the data is incorrect.
             </c:if>
-        </form>
+        </form:form>
 
 
     </div>
@@ -52,20 +57,20 @@
 
                 <div class="field">
                     <label>Login:<input class="fieldL" name="login" required/></label>
-                </div >
+                </div>
                 <div class="field">
                     <label>Password:<input class="fieldP" name="password" required type="password"/></label>
                 </div>
-                <div class="field" >
+                <div class="field">
                     <label>Email:<input class="fieldE" name="email" required type="email"/></label>
-                    <input type="hidden" name="role" value="ROLE_USER"/>
+
                     <sec:csrfInput/>
                 </div>
             </div>
 
             <div class="field">
                 <a type="submit" class="cancel" v-on:click="reg=!reg" href="#!">Cancel</a>
-                <button type="submit" >Sing up
+                <button type="submit">Sing up
                 </button>
             </div>
         </form>
@@ -77,9 +82,9 @@
         <div class="fullscreen-bg">
             <div class="overlay">
             </div>
-            <video loop="" muted="" autoplay=""  class="fullscreen-bg__video">
-                <source src="<spring:url value="/static/imageMainPage/1.mp4"/>"  type="video/mp4">
-                <source src="<spring:url value="/static/imageMainPage/1.mp4"/>"  type="video/webm">
+            <video loop="" muted="" autoplay="" class="fullscreen-bg__video">
+                <source src="<spring:url value="/static/imageMainPage/1.mp4"/>" type="video/mp4">
+                <source src="<spring:url value="/static/imageMainPage/1.mp4"/>" type="video/webm">
             </video>
         </div>
     </div>
@@ -87,8 +92,8 @@
 
 </main>
 <footer>
-    <span class="info">© 2020 PersonGallery</span>
-    <script src="<spring:url value="/static/js/index.js"/>"> </script>
+    <span class="info"> 2020 PersonGallery</span> <!--©-->
+    <script src="<spring:url value="/static/js/index.js"/>"></script>
 </footer>
 </body>
 </html>

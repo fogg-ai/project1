@@ -16,6 +16,7 @@ xmlns:v-bind="http://www.w3.org/1999/xhtml">
 
     <header v-bind:class="header" id="logout">
         <span  v-bind:class="name">𝒫𝑒𝓇𝓈𝑜𝓃 𝒢𝒶𝓁𝓁𝑒𝓇𝓎</span>
+<%--        <h6 v-bind:class="h5">signed in as <sec:authentication property="name"/></h6>--%>
         <a v-bind:class="aut" v-on:click="log=!log" href="#logout">Log out</a>
 
         <input type="checkbox" class="checkbox" id="checkbox"/>

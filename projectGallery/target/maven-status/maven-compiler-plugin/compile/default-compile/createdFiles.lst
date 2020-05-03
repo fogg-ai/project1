@@ -5,6 +5,8 @@ org\itstep\service\mapper\EntityMapper.class
 org\itstep\service\mapper\UserGalleryMapper.class
 org\itstep\repository\UserGalleryRepository.class
 org\itstep\service\mapper\UserGalleryMapperImpl.class
+org\itstep\service\security\CustomAuthenticationProvider.class
 org\itstep\service\dto\UserGalleryDto.class
+org\itstep\service\security\CustomDetailsService.class
 org\itstep\controller\HomeController.class
 org\itstep\service\GenericService.class

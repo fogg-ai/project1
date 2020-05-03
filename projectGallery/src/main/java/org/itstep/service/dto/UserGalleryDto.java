@@ -33,7 +33,7 @@ public class UserGalleryDto {
     private String password;
     @NotBlank
     @NotNull
-    private String role;
+    private String role = "ROLE_USER";
 
     @Override
     public String toString() {

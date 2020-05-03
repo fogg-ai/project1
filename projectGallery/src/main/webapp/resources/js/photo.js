@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
             button:'buttonDay',
             cancel:'cancelNight',
             h3:'h3Day',
+            h5:'h5Day'
         }, watch: {
             day: function (e) {
                 main.day = this.day;
@@ -20,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     this.name = 'nameDay';
                     this.header = 'headerDay';
                     this.aut = 'autDay';
+                    this.h5 = 'h5Day'
                 }else {
                     this.button = 'buttonNight';
                     this.cancel = 'cancelNight';
@@ -27,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     this.name = 'nameNight';
                     this.header = 'headerNight';
                     this.aut = 'autNight';
+                    this.h5 = 'h5Night'
                 }
             }
         }

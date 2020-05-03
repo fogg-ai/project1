@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableJpaRepositories
 public interface UserGalleryRepository extends JpaRepository<UserGallery,Integer> {
-
+    UserGallery findUserByLogin(String login);
 }
