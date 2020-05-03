@@ -37,7 +37,7 @@
 2. Spring Data JPA
 3. Spring Security
 4. Hibernate
-5. MariaDB
+5. MySqlDB
 6. Vue.js
 
 ## Развертывание
