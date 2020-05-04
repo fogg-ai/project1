@@ -32,15 +32,17 @@ public class RegisterController {
             System.out.println(bindingResult);
             return "index";
         }
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        userGalleryDto.setPassword(bCryptPasswordEncoder.encode(userGalleryDto.getPassword()));
+
         try {
+
             userGalleryService.save(userGalleryDto);
         }catch (Exception e){
+            userGalleryDto.setPassword("");
             model.addAttribute("errorLogin","Login not unique.Pls come up with a new login");
             return "index";
         }
-
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        userGalleryDto.setPassword(bCryptPasswordEncoder.encode(userGalleryDto.getPassword()));
 
         SecurityContext emptyContext = SecurityContextHolder.createEmptyContext();
         emptyContext.setAuthentication(new UsernamePasswordAuthenticationToken(userGalleryDto,userGalleryDto.getPassword(),
