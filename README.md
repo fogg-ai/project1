@@ -33,7 +33,7 @@
 
 ## Используемые технологии
 
-1. Spring Boot
+1. Spring MVC Framework
 2. Spring Data JPA
 3. Spring Security
 4. Hibernate
@@ -41,5 +41,10 @@
 6. Vue.js
 
 ## Развертывание
+
+1. Установить Tomcat
+2.
+
+
 
 
