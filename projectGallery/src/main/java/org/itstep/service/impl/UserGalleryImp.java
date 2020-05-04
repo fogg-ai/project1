@@ -3,15 +3,12 @@ package org.itstep.service.impl;
 
 import org.itstep.domain.UserGallery;
 import org.itstep.repository.UserGalleryRepository;
-import org.itstep.service.GenericService;
 import org.itstep.service.dto.UserGalleryDto;
 import org.itstep.service.mapper.UserGalleryMapper;
-import org.itstep.service.service.UserGalleryService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.itstep.service.UserGalleryService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

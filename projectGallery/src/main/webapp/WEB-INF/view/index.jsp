@@ -9,19 +9,39 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="<spring:url value="/static/styles/style.css"/>" rel="stylesheet"/>
     <script src="<spring:url value="/static/js/vueJs.js"/>"></script>
+    <script src="<spring:url value="/static/js/slideMenu.js"/>"></script>
 </head>
 <body>
 
 
 <header id="log">
+    <div class="menu">
+
+        <div class="icon-close">
+            <img src="<spring:url value="/static/imageMainPage/close-btn.png"/>">
+        </div>
+
+        <ul>
+            <sec:authorize access="isAnonymous()">
+                <li v-on:click="reg=!reg"><a  href="#reg">Sing up</a></li>
+                <li v-on:click="log=!log"><a  href="#login">Sing in</a></li>
+            </sec:authorize>
+            <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
+                <li class="link"><a href="/gallery">Gallery</a></li>
+            </sec:authorize>
+        </ul>
+    </div>
+
+    <div class="background">
+
+        <div class="icon-menu">
+            <img src="<spring:url value="/static/imageMainPage/menu-ham-icon.png"/>">
+        </div>
+    </div>
+
+
     <span class="name">𝒫𝑒𝓇𝓈𝑜𝓃 𝒢𝒶𝓁𝓁𝑒𝓇𝓎</span>
-    <sec:authorize access="isAnonymous()">
-    <a class="aut" v-on:click="reg=!reg" href="#reg">Sing up</a>
-    <a class="aut" v-on:click="log=!log" href="#login">Sing in</a>
-    </sec:authorize>
-    <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
-        <a class="aut" href="/gallery">Gallery</a>
-    </sec:authorize>
+
     <div class="form">
         <form:form modelAttribute="userGalleryDto" class="modal" action="/login" v-show="log" method="POST">
             <div class="modal-content">
@@ -51,13 +71,15 @@
 
 
     </div>
+
+
     <div class="form reg">
         <form:form modelAttribute="userGalleryDto" class="modal" action="/register" v-show="reg" method="POST">
             <div class="modal-content">
 
                 <div class="field">
                     <form:label path="login">Login:</form:label>
-                    <form:input path="login" required="required" class="fieldL"/>
+                    <form:input path="login" required="required" class="fieldR"/>
                     <h5><form:errors path="login" class="helper-text" data-error="wrong" data-success="right"/></h5>
                 </div>
                 <div class="field">
@@ -77,6 +99,7 @@
                 <button type="submit">Sing up
                 </button>
             </div>
+            ${errorLogin}
         </form:form>
     </div>
 
@@ -98,6 +121,8 @@
 <footer>
     <span class="info"> 2020 PersonGallery</span> <!--©-->
     <script src="<spring:url value="/static/js/index.js"/>"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="<spring:url value="/static/js/slideMenu.js"/>"></script>
 </footer>
 </body>
 </html>

@@ -3,18 +3,21 @@ document.addEventListener('DOMContentLoaded', function () {
         el: '#logout',
         data: {
             log: false,
+            upload: false,
             day: true,
             name: 'nameDay',
             header: 'headerDay',
             aut:'autDay',
             button:'buttonDay',
-            cancel:'cancelNight',
+            cancel:'cancelDay',
             h3:'h3Day',
-            h5:'h5Day'
+            h5:'h5Day',
+            send:'sendDay',
         }, watch: {
             day: function (e) {
                 main.day = this.day;
                 if(this.day){
+                    this.send = 'sendDay';
                     this.button = 'buttonDay';
                     this.h3 = 'h3Day';
                     this.cancel = 'cancelDay'
@@ -23,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     this.aut = 'autDay';
                     this.h5 = 'h5Day'
                 }else {
+                    this.send = 'sendNight';
                     this.button = 'buttonNight';
                     this.cancel = 'cancelNight';
                     this.h3 = 'h3Night';
@@ -30,6 +34,22 @@ document.addEventListener('DOMContentLoaded', function () {
                     this.header = 'headerNight';
                     this.aut = 'autNight';
                     this.h5 = 'h5Night'
+                }
+            },
+            upload: function (val) {
+                if (this.upload === true) {
+                    this.log = false;
+                }
+                if (this.log === true) {
+                    this.upload = false;
+                }
+            },
+            log: function (val) {
+                if (this.log === true) {
+                    this.upload = false;
+                }
+                if (this.upload === true) {
+                    this.log = false;
                 }
             }
         }

@@ -1,5 +1,6 @@
-org\itstep\service\service\UserGalleryService.class
 org\itstep\domain\UserGallery.class
+org\itstep\service\UserGalleryService.class
+org\itstep\controller\UploadPhoto.class
 org\itstep\service\impl\UserGalleryImp.class
 org\itstep\service\mapper\EntityMapper.class
 org\itstep\service\mapper\UserGalleryMapper.class
@@ -9,4 +10,6 @@ org\itstep\service\security\CustomAuthenticationProvider.class
 org\itstep\service\dto\UserGalleryDto.class
 org\itstep\service\security\CustomDetailsService.class
 org\itstep\controller\HomeController.class
+org\itstep\controller\RegisterController.class
+org\itstep\service\uploadPhoto\UploadPhotoServise.class
 org\itstep\service\GenericService.class

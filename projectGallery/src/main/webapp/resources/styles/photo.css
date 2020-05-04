@@ -83,29 +83,29 @@
     background: white;
     height: 800px;
     color: #000000;
+    height: 100%;
 }
 .contentNight{
     background: #363636;
     height: 800px;
     color: white;
+    height: 100%;
 }
 
 .nameDay{
     font-size: 20px;
-    float: inside;
-    padding-top: 15px;
-    margin-left: 1%;
-    width: 200px;
+    padding-top: -5px;
+    width: 250px;
+    padding-left: 80px;
     display:inline-block;
 }
 
 .nameNight{
     color: #ececec;
+    padding-left: 80px;
     font-size: 20px;
-    float: inside;
-    padding-top: 15px;
-    margin-left: 1%;
-    width: 200px;
+    padding-top: -5px;
+    width: 250px;
     display:inline-block;
 }
 
@@ -113,7 +113,6 @@
 
     .formDay{
         padding: 50px;
-        background: white;
         border: 1px solid #cccccc;
         border-radius: 10px;
         position: fixed; top: 5%; left: 50%;
@@ -150,6 +149,7 @@
     z-index: -1;
     opacity: 0;
     margin: 10px 0 0 20px;
+    display: none;
 }
 .checkbox + label {
     position: relative;
@@ -191,10 +191,10 @@
 }
 
 .buttonDay{
-    padding: 19px 30px;
+    padding: 20px 30px;
     background: white;
     border-radius: 5px;
-    border: 1px solid black;
+    border: 1px solid #000000;
     font-size: 15px;
 }
 .h3Day{
@@ -204,10 +204,10 @@
     color: white;
 }
 .buttonNight{
-    padding: 19px 30px;
-    background: white;
+    padding: 20px 30px;
+    background: #262626;
     border-radius: 5px;
-    border: 1px solid #cccccc;
+    border: 1px solid #ffffff;
     font-size: 15px;
     color: white;
 }
@@ -226,9 +226,27 @@
     padding: 19px 29px;
     text-decoration: none;
     color: white;
-    background: black;
+    background: #262626;
     border-radius: 5px;
 
+}
+.sendDay{
+    border: 1px solid black;
+    display: inline-block;
+    padding: 19px 5px;
+    text-decoration: none;
+    color: #000;
+    background: white;
+    border-radius: 5px;
+}
+.sendNight{
+    border: 1px solid white;
+    display: inline-block;
+    padding: 19px 5px;
+    text-decoration: none;
+    color: white;
+    background: #262626;
+    border-radius: 5px;
 }
 .buttonDay:hover{
     background: #d4caca;
@@ -238,10 +256,17 @@
 }
 
 .buttonNight:hover{
-    background: #dedddd;
+    background: #535353;
 }
 .cancelNight:hover{
-    background: #dedddd;
+    background: #535353;
+}
+
+.sendDay:hover{
+    background: #d4caca;
+}
+.sendNight:hover{
+    background: #535353;
 }
 
 #checkboxD{
@@ -255,4 +280,88 @@
     #checkboxD{
         display: none;
     }
+}
+
+
+body {
+    left: 0;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+
+.menu {
+    background: #555 url('../imageMainPage/menu-bg.jpg') repeat left top;
+    left: -140px;
+    height: 100%;
+    position: fixed;
+    width: 140px;
+}
+
+.background {
+    height: 20px;
+    width: 50px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.menu ul {
+    border-top: 1px solid #555;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    border-bottom: 1px solid #555;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 45px;
+    padding-left: 20px;
+}
+
+.menu li:hover {
+    cursor: pointer;
+    background-color: #555;
+}
+
+.menu a {
+    color: #fff;
+    font-size: 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.icon-close {
+    cursor: pointer;
+    padding-left: 40px;
+    margin-bottom:20px;
+    height: 20px;
+    width: 20px;
+}
+
+
+.icon-menu {
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    padding-bottom: 25px;
+    padding-left: 25px;
+    padding-top: 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+    float: left;
+    color: #262626;
+}
+
+.icon-menu img {
+    margin-right: 5px;
+    width: 40px;
+}
+
+.link a{
+    display: block;
 }

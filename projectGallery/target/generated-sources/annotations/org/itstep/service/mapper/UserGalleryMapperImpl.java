@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-05-03T13:43:36+0300",
+    date = "2020-05-04T18:40:23+0300",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 12.0.1 (Oracle Corporation)"
 )
 @Component
@@ -56,6 +56,7 @@ public class UserGalleryMapperImpl implements UserGalleryMapper {
         userGalleryDto.setEmail( userGallery.getEmail() );
         userGalleryDto.setPassword( userGallery.getPassword() );
         userGalleryDto.setRole( userGallery.getRole() );
+        userGalleryDto.setPhotoPackage( userGallery.getPhotoPackage() );
 
         return userGalleryDto;
     }
@@ -73,6 +74,7 @@ public class UserGalleryMapperImpl implements UserGalleryMapper {
         userGallery.setEmail( userGalleryDto.getEmail() );
         userGallery.setPassword( userGalleryDto.getPassword() );
         userGallery.setRole( userGalleryDto.getRole() );
+        userGallery.setPhotoPackage( userGalleryDto.getPhotoPackage() );
 
         return userGallery;
     }

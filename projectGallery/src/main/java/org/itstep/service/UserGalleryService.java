@@ -1,4 +1,4 @@
-package org.itstep.service.service;
+package org.itstep.service;
 
 import org.itstep.service.GenericService;
 import org.itstep.service.dto.UserGalleryDto;

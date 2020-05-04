@@ -35,6 +35,9 @@ public class UserGalleryDto {
     @NotNull
     private String role = "ROLE_USER";
 
+    private String photoPackage;
+
+
     @Override
     public String toString() {
         return "UserGalleryDto{" +

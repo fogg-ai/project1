@@ -13,9 +13,7 @@ import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.util.Collection;
 
 @Table(name = "usergallery")
@@ -30,6 +28,7 @@ public class UserGallery implements UserDetails {
     private Integer id;
     @NotBlank
     @NotNull
+    @Column(unique = true)
     private String login;
     @NotBlank
     @NotNull
@@ -41,6 +40,9 @@ public class UserGallery implements UserDetails {
     @NotBlank
     @NotNull
     private String role;
+
+    private String photoPackage;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return AuthorityUtils.createAuthorityList(role);
