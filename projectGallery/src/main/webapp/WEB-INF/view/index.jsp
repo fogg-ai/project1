@@ -50,7 +50,7 @@
                     <label>Login:<input class="fieldL" name="login" required/></label>
                 </div>
                 <div class="field">
-                    <label>Password:<input name="password" class="fieldP" required type="password"/></label>
+                    <label>Password:<input name="password"  class="fieldP" required type="password"/></label>
                     <sec:csrfInput/>
                 </div>
                 <div class="field">
@@ -84,7 +84,7 @@
                 </div>
                 <div class="field">
                     <form:label path="password">Password:<form:input maxlength="16" path="password" type="password" required="required" class="fieldP"/></form:label>
-                    <h5><form:errors path="password" class="helper-text" data-error="wrong" data-success="right"/></h5>
+                    <h5><form:errors path="password"  class="helper-text" data-error="wrong" data-success="right"/></h5>
                 </div>
                 <div class="field">
                     <form:label path="email">Email:<form:input path="email" type="email" required="required" class="fieldE"/></form:label>

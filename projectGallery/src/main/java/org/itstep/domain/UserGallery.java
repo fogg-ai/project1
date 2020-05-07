@@ -41,7 +41,10 @@ public class UserGallery implements UserDetails {
     @NotNull
     private String role;
 
-    private String photoPackage;
+
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinColumn(name = "photo_id")
+    private Photo photo;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

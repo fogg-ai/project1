@@ -2,6 +2,7 @@ package org.itstep.service.dto;
 
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
+import org.itstep.domain.Photo;
 import org.itstep.domain.UserGallery;
 
 import javax.persistence.GeneratedValue;
@@ -35,7 +36,7 @@ public class UserGalleryDto {
     @NotNull
     private String role = "ROLE_USER";
 
-    private String photoPackage;
+    private PhotoDto photo;
 
 
     @Override

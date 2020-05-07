@@ -4,7 +4,6 @@ import org.itstep.domain.UserGallery;
 import org.itstep.service.dto.UserGalleryDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.springframework.stereotype.Component;
 
 
 @Mapper(componentModel = "spring")
