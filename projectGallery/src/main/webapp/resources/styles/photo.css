@@ -386,6 +386,8 @@
     width: 117px;
     height: 147px;
     background:#ff6600;
+    margin-left: 20px;
+    margin-top: 20px;
 }
 .block{
     position:absolute;
