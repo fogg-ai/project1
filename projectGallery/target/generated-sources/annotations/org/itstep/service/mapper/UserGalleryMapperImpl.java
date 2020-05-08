@@ -3,13 +3,15 @@ package org.itstep.service.mapper;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
+import org.itstep.domain.Photo;
 import org.itstep.domain.UserGallery;
+import org.itstep.service.dto.PhotoDto;
 import org.itstep.service.dto.UserGalleryDto;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-05-04T18:40:23+0300",
+    date = "2020-05-08T13:53:26+0300",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 12.0.1 (Oracle Corporation)"
 )
 @Component
@@ -56,7 +58,7 @@ public class UserGalleryMapperImpl implements UserGalleryMapper {
         userGalleryDto.setEmail( userGallery.getEmail() );
         userGalleryDto.setPassword( userGallery.getPassword() );
         userGalleryDto.setRole( userGallery.getRole() );
-        userGalleryDto.setPhotoPackage( userGallery.getPhotoPackage() );
+        userGalleryDto.setPhoto( photoToPhotoDto( userGallery.getPhoto() ) );
 
         return userGalleryDto;
     }
@@ -74,8 +76,40 @@ public class UserGalleryMapperImpl implements UserGalleryMapper {
         userGallery.setEmail( userGalleryDto.getEmail() );
         userGallery.setPassword( userGalleryDto.getPassword() );
         userGallery.setRole( userGalleryDto.getRole() );
-        userGallery.setPhotoPackage( userGalleryDto.getPhotoPackage() );
+        userGallery.setPhoto( photoDtoToPhoto( userGalleryDto.getPhoto() ) );
 
         return userGallery;
+    }
+
+    protected PhotoDto photoToPhotoDto(Photo photo) {
+        if ( photo == null ) {
+            return null;
+        }
+
+        PhotoDto photoDto = new PhotoDto();
+
+        photoDto.setId( photo.getId() );
+        photoDto.setPath( photo.getPath() );
+        photoDto.setPathUrl( photo.getPathUrl() );
+        photoDto.setSize( photo.getSize() );
+        photoDto.setPhotoPackage( toDto( photo.getPhotoPackage() ) );
+
+        return photoDto;
+    }
+
+    protected Photo photoDtoToPhoto(PhotoDto photoDto) {
+        if ( photoDto == null ) {
+            return null;
+        }
+
+        Photo photo = new Photo();
+
+        photo.setId( photoDto.getId() );
+        photo.setPath( photoDto.getPath() );
+        photo.setPathUrl( photoDto.getPathUrl() );
+        photo.setSize( photoDto.getSize() );
+        photo.setPhotoPackage( toEntity( photoDto.getPhotoPackage() ) );
+
+        return photo;
     }
 }

@@ -7,6 +7,8 @@
         <sec:csrf disabled="true"></sec:csrf>
         <sec:intercept-url pattern="/login/**" access="isAnonymous()"/>
         <sec:intercept-url pattern="/register/**" access="isAnonymous()"/>
+        <sec:intercept-url pattern="/photo/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
+        <sec:intercept-url pattern="/delete/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
         <sec:intercept-url pattern="/upload/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
         <sec:intercept-url pattern="/gallery/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
         <sec:intercept-url pattern="/**" access="permitAll()"/>
@@ -24,6 +26,5 @@
         <sec:authentication-provider ref="customAuthenticationProvider">
         </sec:authentication-provider>
     </sec:authentication-manager>
-
     <bean class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"></bean>
 </beans>

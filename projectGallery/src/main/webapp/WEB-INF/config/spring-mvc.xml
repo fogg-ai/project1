@@ -18,6 +18,14 @@
     <mvc:resources mapping="/photo/**" location="/photo/" />
 
 
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/photo/**"/>
+            <bean id="loggerInterceptor" class="org.itstep.filter.FilterSecuritu"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/view/" p:suffix=".jsp"/>
 

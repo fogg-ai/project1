@@ -83,11 +83,12 @@
     background: white;
     color: #000000;
     height: auto;
+    height: 200%;
 }
 .contentNight{
     background: #363636;
     color: white;
-    height: auto;
+    height: 200%;
 }
 
 .nameDay{
@@ -365,7 +366,7 @@
 }
 
 .allPhoto{
-    margin: 40px 30px 20px 150px;
+    margin: 0 30px 20px 150px;
 }
 
 .allPhoto a{
@@ -404,6 +405,7 @@
     text-decoration: none;
     float: right;
 }
-body{
-    background: #ccc;
+
+.mem{
+    color: white;
 }

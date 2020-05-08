@@ -72,7 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
             localStorage.setItem('day', localStorage.getItem('day'));
 
             if (localStorage.getItem('day') === 'true') {
-
                 this.form = 'formDay';
                 this.send = 'sendDay';
                 this.button = 'buttonDay';

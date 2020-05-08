@@ -3,6 +3,7 @@ package org.itstep.controller;
 
 
 import org.apache.commons.math3.util.Precision;
+import org.itstep.domain.UserGallery;
 import org.itstep.repository.UserGalleryRepository;
 import org.itstep.service.dto.UserGalleryDto;
 import org.itstep.service.UserGalleryService;
@@ -42,6 +43,15 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/photo/{packagePhoto}")
+    public String viewPhoto(@PathVariable String packagePhoto){
+        UserGalleryDto user = (UserGalleryDto) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String name = user.getLogin();
+        UserGallery userByLogin = userGalleryRepository.findUserByLogin(name);
+        System.out.println(packagePhoto);
+
+        return "redirect:/gallery";
+    }
 
 
     @GetMapping(path="/gallery")

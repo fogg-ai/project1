@@ -31,7 +31,7 @@
                 <li><br/></li>
                 <li></li>
                 <li></li>
-                <li>${size}/1000</li>
+                <li><span class="mem">${size}/1000</span></li>
             </ul>
         </div>
 
@@ -83,7 +83,7 @@
                 <img src="<spring:url value="${item}"/>">
                 <div class="block">
                     <h2>
-                        <a class="infoImage" href="/deletePhoto<spring:url value="${item}"/>"/>🗑</a>
+                        <a class="infoImage" href="/deletePhoto?path=<spring:url value="${item}"/>"/>🗑</a>
                         <a class="infoImage" href="<spring:url value="${item}"/>">ᐈ</a>
                     </h2>
                 </div>
@@ -92,7 +92,7 @@
 
     </div>
 
-    ${message};
+    ${message}
 </main>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="<spring:url value="/static/js/slideMenu.js"/>"></script>
