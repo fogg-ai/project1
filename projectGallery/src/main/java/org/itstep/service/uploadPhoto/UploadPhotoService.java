@@ -45,7 +45,7 @@ public class UploadPhotoService {
                     file.getContentType().equals("video/mpeg")) {
                 File dir = new File(path);
                 if (!dir.exists()) {
-                    dir.mkdir();
+                    dir.mkdirs();
                 }
                 File j = new File(path + File.separator + file.getOriginalFilename());
                 try {
@@ -67,7 +67,7 @@ public class UploadPhotoService {
     }
 
     public void operationFile(MultipartFile f) {
-        UserGalleryDto user = (UserGalleryDto) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserGallery user = (UserGallery) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String name = user.getLogin();
         UserGallery userByLogin = userGalleryRepository.findUserByLogin(name);
         Photo photoPackage = userByLogin.getPhoto();

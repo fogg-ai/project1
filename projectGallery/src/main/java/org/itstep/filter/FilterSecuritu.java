@@ -26,7 +26,7 @@ public class FilterSecuritu extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response,
                              Object handler) throws Exception {
-        UserGalleryDto user = (UserGalleryDto) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserGallery user = (UserGallery) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String name = user.getLogin();
         int i = request.getRequestURI().lastIndexOf("/");
         String substring = request.getRequestURI().substring(7,i);

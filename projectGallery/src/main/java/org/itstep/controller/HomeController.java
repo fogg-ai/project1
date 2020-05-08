@@ -14,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 
 @Controller
 public class HomeController {
@@ -45,19 +47,16 @@ public class HomeController {
 
     @GetMapping("/photo/{packagePhoto}")
     public String viewPhoto(@PathVariable String packagePhoto){
-        UserGalleryDto user = (UserGalleryDto) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String name = user.getLogin();
-        UserGallery userByLogin = userGalleryRepository.findUserByLogin(name);
-        System.out.println(packagePhoto);
-
         return "redirect:/gallery";
     }
 
 
     @GetMapping(path="/gallery")
     public String indexGallery(Model model){
-        UserGalleryDto user = (UserGalleryDto) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String name = user.getLogin();
+
+        UserGallery principal = (UserGallery) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        String name = principal.getLogin();
         model.addAttribute("message", uploadPhotoServise.getCheck());
         model.addAttribute("size",
                 Precision.round(userGalleryRepository.findUserByLogin(name).getPhoto().getSize() * 0.0000010,

@@ -3,6 +3,7 @@ package org.itstep.service.security;
 
 import org.itstep.domain.UserGallery;
 import org.itstep.repository.UserGalleryRepository;
+import org.itstep.service.dto.UserGalleryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
@@ -25,13 +26,8 @@ public class CustomDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
 
-        UserGallery userGallery = userGalleryRepository.findUserByLogin(login);
-        if(userGallery != null){
-            return userGalleryRepository.findUserByLogin(login);
-        }else {
-            return new User("admin","$2a$10$qxcV1Da7Hnfi5vv/eRp8HuYKlmiw6NBaPBJJff5vDkFR.K1fiBoBm",
-                    AuthorityUtils.createAuthorityList("ROLE_ADMIN"));
-        }
+
+        return userGalleryRepository.findUserByLogin(login);
 
     }
 }

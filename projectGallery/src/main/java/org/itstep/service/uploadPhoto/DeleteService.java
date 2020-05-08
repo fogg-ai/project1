@@ -27,7 +27,7 @@ public class DeleteService {
     }
 
     public boolean deleteGet(String path) {
-        UserGalleryDto user = (UserGalleryDto) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserGallery user = (UserGallery) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String name = user.getLogin();
         UserGallery userByLogin = userGalleryRepository.findUserByLogin(name);
         Photo photoPackage = userByLogin.getPhoto();
@@ -35,13 +35,7 @@ public class DeleteService {
         int i = path.lastIndexOf('/');
         File file = new File(userByLogin.getPhoto().getPath() + path.substring(i));
 
-
-        System.out.println("--------------------------------------");
-        System.out.println(file.length());
-        System.out.println(photoPackage.getSize());
-        System.out.println("---------------------------------------");
         if(file.exists()) {
-            System.out.println(photoPackage.getSize() - file.length() + "&&&&&&&&&&&&&&&");
             photoPackage.setSize(photoPackage.getSize() - file.length());
             photoRepository.setUserInfoById(photoPackage.getSize(), userByLogin.getPhoto().getId());
             file.delete();

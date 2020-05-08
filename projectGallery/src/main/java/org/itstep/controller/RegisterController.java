@@ -1,9 +1,12 @@
 package org.itstep.controller;
 
 
+import org.itstep.domain.UserGallery;
+import org.itstep.repository.UserGalleryRepository;
 import org.itstep.service.dto.PhotoDto;
 import org.itstep.service.dto.UserGalleryDto;
 import org.itstep.service.UserGalleryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContext;
@@ -21,9 +24,12 @@ public class RegisterController {
     final
     UserGalleryService userGalleryService;
 
+    final
+    UserGalleryRepository userGalleryRepository;
 
-    public RegisterController(UserGalleryService userGalleryService) {
+    public RegisterController(UserGalleryService userGalleryService, UserGalleryRepository userGalleryDto) {
         this.userGalleryService = userGalleryService;
+        this.userGalleryRepository = userGalleryDto;
     }
 
     @PostMapping("/register")
@@ -47,9 +53,11 @@ public class RegisterController {
             return "index";
         }
 
+        UserGallery userByLogin = userGalleryRepository.findUserByLogin(userGalleryDto.getLogin());
+
         SecurityContext emptyContext = SecurityContextHolder.createEmptyContext();
-        emptyContext.setAuthentication(new UsernamePasswordAuthenticationToken(userGalleryDto, userGalleryDto.getPassword(),
-                AuthorityUtils.createAuthorityList(userGalleryDto.getRole())));
+        emptyContext.setAuthentication(new UsernamePasswordAuthenticationToken(userByLogin, userByLogin.getPassword(),
+                AuthorityUtils.createAuthorityList(userByLogin.getRole())));
         SecurityContextHolder.setContext(emptyContext);
         return "redirect:/gallery";
     }

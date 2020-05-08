@@ -26,7 +26,7 @@ public class FindDirectoryPhoto {
     }
 
     public List<String> findPath(){
-        UserGalleryDto user = (UserGalleryDto) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserGallery user = (UserGallery) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String name = user.getLogin();
         UserGallery userByLogin = userGalleryRepository.findUserByLogin(name);
         List<File> collect = null;

@@ -4,6 +4,9 @@ import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.itstep.domain.Photo;
 import org.itstep.domain.UserGallery;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,12 +15,13 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserGalleryDto {
+public class UserGalleryDto  {
     private Integer id;
 
     @NotBlank
@@ -39,16 +43,6 @@ public class UserGalleryDto {
     private PhotoDto photo;
 
 
-    @Override
-    public String toString() {
-        return "UserGalleryDto{" +
-                "id=" + id +
-                ", userName='" + login + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
-                '}';
-    }
 }
 
 

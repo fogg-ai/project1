@@ -366,7 +366,7 @@
 }
 
 .allPhoto{
-    margin: 0 30px 20px 150px;
+    margin: 0 30px 0 150px;
 }
 
 .allPhoto a{
@@ -377,7 +377,7 @@
 .allPhoto img{
     width: 117px;
     height: 187px;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
 
 }
 .holder{
