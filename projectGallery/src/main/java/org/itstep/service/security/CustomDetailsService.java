@@ -25,9 +25,6 @@ public class CustomDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-
-
         return userGalleryRepository.findUserByLogin(login);
-
     }
 }

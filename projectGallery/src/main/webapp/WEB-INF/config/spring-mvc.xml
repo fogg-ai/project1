@@ -16,6 +16,7 @@
 
     <mvc:resources mapping="/static/**" location="/resources/" />
     <mvc:resources mapping="/photo/**" location="/photo/" />
+    <mvc:resources mapping="/openphoto/**" location="/openPhoto/" />
 
 
 

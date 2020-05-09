@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
             button: null,
             cancel: null,
             h3: null,
-            h5: null,
             send: null,
             form: null,
         }, watch: {
@@ -34,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     this.name = 'nameDay';
                     this.headerHtml = 'headerDay';
                     this.aut = 'autDay';
-                    this.h5 = 'h5Day'
+
                 }
                 if (!this.day) {
                     this.form = 'formNight';
@@ -45,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     this.name = 'nameNight';
                     this.headerHtml = 'headerNight';
                     this.aut = 'autNight';
-                    this.h5 = 'h5Night';
+
                 }
 
 
@@ -80,10 +79,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.name = 'nameDay';
                 this.headerHtml = 'headerDay';
                 this.aut = 'autDay';
-                this.h5 = 'h5Day'
+
             }
             if (localStorage.getItem('day') === 'false') {
-
                 this.form = 'formNight';
                 this.send = 'sendNight';
                 this.button = 'buttonNight';
@@ -92,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.name = 'nameNight';
                 this.headerHtml = 'headerNight';
                 this.aut = 'autNight';
-                this.h5 = 'h5Night'
+
             }
 
 
@@ -105,12 +103,15 @@ document.addEventListener('DOMContentLoaded', function () {
         data: {
             day: true,
             content: null,
+            path: null
         }, watch: {
             day: function (e) {
                 if (header.day) {
                     this.content = 'contentDay';
+                    this.path = 'pathDay';
                 } else {
                     this.content = 'contentNight';
+                    this.path = 'pathNight';
                 }
 
             }
@@ -118,8 +119,10 @@ document.addEventListener('DOMContentLoaded', function () {
         mounted() {
             if (localStorage.getItem('day') === 'true') {
                 this.content = 'contentDay';
+                this.path = 'pathDay';
             } else if (localStorage.getItem('day') === 'false') {
                 this.content = 'contentNight';
+                this.path = 'pathNight';
             }
 
         }

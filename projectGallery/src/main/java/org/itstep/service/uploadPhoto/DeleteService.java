@@ -43,6 +43,24 @@ public class DeleteService {
         }else {
             return false;
         }
+    }
+    public boolean deleteOpenPhoto(String path) {
+        UserGallery user = (UserGallery) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String name = user.getLogin();
+        UserGallery userByLogin = userGalleryRepository.findUserByLogin(name);
 
+        int i = path.lastIndexOf('/');
+        File file = new File("src/main/webapp/openPhoto/"
+                + userByLogin.getLogin() + File.separator + path.substring(i));
+
+
+        System.out.println(file);
+        if(file.exists()) {
+
+            file.delete();
+            return true;
+        }else {
+            return false;
+        }
     }
 }

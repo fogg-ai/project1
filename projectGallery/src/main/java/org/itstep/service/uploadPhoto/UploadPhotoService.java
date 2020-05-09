@@ -12,8 +12,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 @Service
 public class UploadPhotoService {
@@ -45,9 +50,10 @@ public class UploadPhotoService {
                     file.getContentType().equals("video/mpeg")) {
                 File dir = new File(path);
                 if (!dir.exists()) {
-                    dir.mkdirs();
+                    dir.mkdir();
                 }
                 File j = new File(path + File.separator + file.getOriginalFilename());
+
                 try {
                     file.transferTo(j);
                     c = true;
@@ -63,7 +69,31 @@ public class UploadPhotoService {
             c = false;
             check = "Not enough storage";
         }
+
         return c;
+    }
+
+    public void openSourcePhoto(String path) {
+        UserGallery user = (UserGallery) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String name = user.getLogin();
+        UserGallery userByLogin = userGalleryRepository.findUserByLogin(name);
+
+        int i = path.lastIndexOf('/');
+        File file = new File(userByLogin.getPhoto().getPath() + path.substring(i));
+        File copyPath = new File("src/main/webapp/openPhoto/" + userByLogin.getLogin() + File.separator);
+
+        if (!copyPath.exists()) {
+            copyPath.mkdirs();
+        }
+        File finalPath = new File(copyPath.getPath() + path.substring(i));
+        try {
+            if (file.exists()) {
+                Files.copy(file.toPath(), finalPath.toPath());
+            }
+        } catch (Exception e) {
+
+        }
+
     }
 
     public void operationFile(MultipartFile f) {
@@ -73,7 +103,7 @@ public class UploadPhotoService {
         Photo photoPackage = userByLogin.getPhoto();
 
         boolean b = this.uploadFile(f, photoPackage.getPath(), photoPackage.getSize());
-        if(b) {
+        if (b) {
             photoPackage.setSize(photoPackage.getSize() + f.getSize());
             photoRepository.setUserInfoById(photoPackage.getSize(), userByLogin.getPhoto().getId());
         }

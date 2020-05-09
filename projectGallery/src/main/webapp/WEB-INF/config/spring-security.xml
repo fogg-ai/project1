@@ -7,6 +7,7 @@
         <sec:csrf disabled="true"></sec:csrf>
         <sec:intercept-url pattern="/login/**" access="isAnonymous()"/>
         <sec:intercept-url pattern="/register/**" access="isAnonymous()"/>
+        <sec:intercept-url pattern="/opensource/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
         <sec:intercept-url pattern="/photo/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
         <sec:intercept-url pattern="/delete/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>
         <sec:intercept-url pattern="/upload/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')"/>

@@ -14,15 +14,24 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class FindDirectoryPhoto {
+public class FindDirectoryPhotoService {
     final
     UserGalleryRepository userGalleryRepository;
 
-    public FindDirectoryPhoto(UserGalleryRepository userGalleryRepository) {
+    public FindDirectoryPhotoService(UserGalleryRepository userGalleryRepository) {
         this.userGalleryRepository = userGalleryRepository;
+    }
+
+    public String findOpenPath(String pathPersonPhoto){
+        List<String> path = findPath();
+        Optional<String> first = Optional.of(path.stream().filter(s -> s.equals(pathPersonPhoto))
+                .map(s -> s.substring(6)).map(s -> "/openphoto" + s).findFirst()
+                .orElse("There is no such photo"));
+        return first.get();
     }
 
     public List<String> findPath(){

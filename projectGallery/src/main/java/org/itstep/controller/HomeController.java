@@ -7,14 +7,12 @@ import org.itstep.domain.UserGallery;
 import org.itstep.repository.UserGalleryRepository;
 import org.itstep.service.dto.UserGalleryDto;
 import org.itstep.service.UserGalleryService;
-import org.itstep.service.uploadPhoto.FindDirectoryPhoto;
+import org.itstep.service.uploadPhoto.FindDirectoryPhotoService;
 import org.itstep.service.uploadPhoto.UploadPhotoService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.security.Principal;
 
 
 @Controller
@@ -23,19 +21,19 @@ public class HomeController {
     UserGalleryService userGalleryService;
 
     final
-    FindDirectoryPhoto findDirectoryPhoto;
+    FindDirectoryPhotoService findDirectoryPhotoService;
 
     final
     UserGalleryRepository userGalleryRepository;
     final
-    UploadPhotoService uploadPhotoServise;
+    UploadPhotoService uploadPhotoService;
 
     public HomeController(UserGalleryService userGalleryService, UserGalleryRepository userGalleryRepository,
-                          FindDirectoryPhoto findDirectoryPhoto, UploadPhotoService uploadPhotoServise) {
+                          FindDirectoryPhotoService findDirectoryPhotoService, UploadPhotoService uploadPhotoService) {
         this.userGalleryService = userGalleryService;
         this.userGalleryRepository = userGalleryRepository;
-        this.findDirectoryPhoto = findDirectoryPhoto;
-        this.uploadPhotoServise = uploadPhotoServise;
+        this.findDirectoryPhotoService = findDirectoryPhotoService;
+        this.uploadPhotoService = uploadPhotoService;
     }
 
 
@@ -51,17 +49,22 @@ public class HomeController {
     }
 
 
+
     @GetMapping(path="/gallery")
-    public String indexGallery(Model model){
-
+    public String indexGallery(@RequestParam(required = false) String path , Model model){
         UserGallery principal = (UserGallery) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
         String name = principal.getLogin();
-        model.addAttribute("message", uploadPhotoServise.getCheck());
+        model.addAttribute("message", uploadPhotoService.getCheck());
         model.addAttribute("size",
                 Precision.round(userGalleryRepository.findUserByLogin(name).getPhoto().getSize() * 0.0000010,
                         3));
-        model.addAttribute("pathList",findDirectoryPhoto.findPath());
+        model.addAttribute("pathList", findDirectoryPhotoService.findPath());
+        if(path != null) {
+            uploadPhotoService.openSourcePhoto(path);
+            model.addAttribute("pathOpenPhoto", findDirectoryPhotoService.findOpenPath(path));
+        }else {
+            model.addAttribute("pathOpenPhoto", "");
+        }
         return "gallery";
     }
 }

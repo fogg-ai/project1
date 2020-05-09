@@ -14,12 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 
 @Controller
-public class UploadPhoto {
-    final
-    DeleteService deleteService;
+public class UploadPhotoController {
+
     final
     UploadPhotoService uploadPhotoService;
 
@@ -30,11 +28,11 @@ public class UploadPhoto {
     PhotoRepository photoRepository;
 
 
-    public UploadPhoto(UploadPhotoService uploadPhotoService, UserGalleryRepository userGalleryRepository, PhotoRepository photoRepository, DeleteService deleteService) {
+    public UploadPhotoController(UploadPhotoService uploadPhotoService, UserGalleryRepository userGalleryRepository, PhotoRepository photoRepository) {
         this.uploadPhotoService = uploadPhotoService;
         this.userGalleryRepository = userGalleryRepository;
         this.photoRepository = photoRepository;
-        this.deleteService = deleteService;
+
     }
 
     @PostMapping("/upload")
@@ -46,15 +44,7 @@ public class UploadPhoto {
 
     @GetMapping("/upload")
     public String uploadGet(Model model) {
-
-        return "/gallery";
-    }
-
-    @GetMapping("/deletePhoto")
-    public String deleteGet(@RequestParam String path) {
-        deleteService.deleteGet(path);
-
-        return "redirect:/gallery";
+        return "gallery";
     }
 
 }

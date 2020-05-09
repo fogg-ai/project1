@@ -52,27 +52,24 @@
     background: #585656;
 }
 
-.h5Day{
-    margin-top: 10px;
-    width: 50px;
-    display: inline;
-    float: right;
-}
-
 .h5Night{
     margin-top: 10px;
     width: 50px;
     display: inline;
-    float: right;
     color: white;
+    font-family: sans-serif;
 }
 .headerDay{
+    z-index:1000;
+    position: fixed;
     width: 100%;
     height: 60px;
     background: #ececec;
     border-bottom: 1px solid #000000;
 }
 .headerNight{
+    z-index:1000;
+    position: fixed;
     width: 100%;
     height: 60px;
     background: #262626;
@@ -375,8 +372,8 @@
 }
 
 .allPhoto img{
-    width: 117px;
-    height: 187px;
+    width: 170px;
+    height: 230px;
     padding-bottom: 20px;
 
 }
@@ -386,8 +383,8 @@
     width: 117px;
     height: 147px;
     background:#ff6600;
-    margin-left: 20px;
-    margin-top: 20px;
+    margin-right: 80px;
+    margin-top: 30px;
 }
 .block{
     position:absolute;
@@ -397,6 +394,7 @@
     top:0;
     background: rgba(173, 173, 173, 0.7);
     height: 30px;
+    width: 170px;
     display:none;
 }
 .holder:hover .block{
@@ -410,4 +408,42 @@
 
 .mem{
     color: white;
+}
+.pusto{
+    height: 80px;
+}
+.pathOpenPhoto{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.pathDay{
+    margin-top: 33px;
+    color:black;
+    text-decoration: none;
+}
+.pathNight{
+    margin-top: 33px;
+    color: white;
+    text-decoration: none;
+}
+.blockPhoto{
+    padding-left: 15px;
+    background: #a7a7a7;
+    border-radius: 5px;
+}
+.buttonCopy{
+    padding: 1px;
+}
+@media (max-width: 595px) {
+
+    .holder{
+        display: inline-block;
+        position:relative;
+        width: 117px;
+        height: 147px;
+        background:#ff6600;
+        margin-right: 80px;
+        margin-bottom: 100px;
+    }
 }
