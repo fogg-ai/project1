@@ -1,24 +1,17 @@
-package org.itstep.service.uploadPhoto;
+package org.itstep.service.servisePhoto;
 
 import org.itstep.domain.Photo;
 import org.itstep.domain.UserGallery;
 import org.itstep.repository.PhotoRepository;
 import org.itstep.repository.UserGalleryRepository;
-import org.itstep.service.dto.UserGalleryDto;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 
 @Service
 public class UploadPhotoService {
@@ -74,10 +67,11 @@ public class UploadPhotoService {
     }
 
     public void openSourcePhoto(String path) {
-        UserGallery user = (UserGallery) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        UserGallery user =
+                (UserGallery) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String name = user.getLogin();
         UserGallery userByLogin = userGalleryRepository.findUserByLogin(name);
-
         int i = path.lastIndexOf('/');
         File file = new File(userByLogin.getPhoto().getPath() + path.substring(i));
         File copyPath = new File("src/main/webapp/openPhoto/" + userByLogin.getLogin() + File.separator);

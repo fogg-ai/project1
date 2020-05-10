@@ -102,6 +102,8 @@
                         <a class="infoImage" title="View" href="<spring:url value="${item}"/>">ᐈ</a>
                         <a class="infoImage" title="Share this"
                            href="/gallery/?path=<spring:url value="${item}"/>"/>ᕮᕭ</a>
+                        <a class="infoImage" title="Download"
+                           href="/download?path=<spring:url value="${item}"/>"/>&#10506;</a>
                     </h2>
                 </div>
             </span>

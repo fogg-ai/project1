@@ -1,11 +1,8 @@
-package org.itstep.service.uploadPhoto;
+package org.itstep.service.servisePhoto;
 
 import org.itstep.domain.UserGallery;
 import org.itstep.repository.UserGalleryRepository;
-import org.itstep.service.dto.UserGalleryDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
