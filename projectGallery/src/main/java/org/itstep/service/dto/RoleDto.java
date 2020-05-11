@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.itstep.domain.UserGallery;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -14,20 +13,13 @@ import javax.validation.constraints.NotNull;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PhotoDto  {
-    Integer id;
+public class RoleDto {
 
+    private Integer id;
     @NotBlank
     @NotNull
-    private String path;
+    private String role;
 
-    @NotBlank
-    @NotNull
-    private String pathUrl;
 
-    private long size;
-
-    private long maxSize;
-
-    private UserGalleryDto photoPackage;
+    private UserGallery rolePerson;
 }

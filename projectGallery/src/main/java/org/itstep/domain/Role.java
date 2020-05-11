@@ -10,32 +10,23 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-@Table(name = "photo")
+@Table(name = "role")
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @EnableJpaRepositories
-public class Photo {
+public class Role {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "id")
-    Integer id;
-
+    private Integer id;
     @NotBlank
     @NotNull
-    private String path;
+    private String role;
 
-    @NotBlank
-    @NotNull
-    private String pathUrl;
-
-
-    private long size;
-
-    private long maxSize;
-
-    @OneToOne(mappedBy = "photo", cascade = CascadeType.ALL,
+    @OneToOne(mappedBy = "rolePerson", cascade = CascadeType.ALL,
             fetch = FetchType.EAGER, optional = false)
-    private UserGallery photoPackage;
+    private UserGallery rolePerson;
+
 }

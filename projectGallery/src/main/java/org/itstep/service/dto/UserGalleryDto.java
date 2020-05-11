@@ -3,6 +3,7 @@ package org.itstep.service.dto;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.itstep.domain.Photo;
+import org.itstep.domain.Role;
 import org.itstep.domain.UserGallery;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -36,9 +37,8 @@ public class UserGalleryDto  {
     @NotNull
     @Length(max = 16)
     private String password;
-    @NotBlank
-    @NotNull
-    private String role = "ROLE_USER";
+
+    private RoleDto rolePerson;
 
     private PhotoDto photo;
 

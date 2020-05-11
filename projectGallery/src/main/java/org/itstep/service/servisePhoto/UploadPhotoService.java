@@ -35,10 +35,10 @@ public class UploadPhotoService {
         return check;
     }
 
-    public boolean uploadFile(MultipartFile file, String path, long size) {
+    public boolean uploadFile(MultipartFile file, String path, long size, long maxSize) {
         check = "";
         boolean c = false;
-        if (size <= 1000000000) {
+        if (size <= maxSize) {
             if (file.getContentType().equals("image/jpeg") || file.getContentType().equals("image/png") ||
                     file.getContentType().equals("video/mpeg")) {
                 File dir = new File(path);
@@ -96,7 +96,7 @@ public class UploadPhotoService {
         UserGallery userByLogin = userGalleryRepository.findUserByLogin(name);
         Photo photoPackage = userByLogin.getPhoto();
 
-        boolean b = this.uploadFile(f, photoPackage.getPath(), photoPackage.getSize());
+        boolean b = this.uploadFile(f, photoPackage.getPath(), photoPackage.getSize(), photoPackage.getMaxSize());
         if (b) {
             photoPackage.setSize(photoPackage.getSize() + f.getSize());
             photoRepository.setUserInfoById(photoPackage.getSize(), userByLogin.getPhoto().getId());

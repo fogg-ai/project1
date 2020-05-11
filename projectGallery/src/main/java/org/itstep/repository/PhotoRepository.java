@@ -13,6 +13,11 @@ public interface PhotoRepository extends JpaRepository<Photo,Integer> {
     @Query("update Photo p set p.size = ?1 where p.id = ?2")
     void setUserInfoById(long size, Integer id);
 
-    Photo findUserByPathUrl(String pathUrl);
-    Photo findUserByPath(String path);
+    @Transactional
+    @Modifying
+    @Query("update Photo p set p.maxSize = ?1 where p.id = ?2")
+    void setMaxSize(long size, Integer id);
+
+
+
 }

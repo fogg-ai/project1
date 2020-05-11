@@ -32,8 +32,10 @@
                 <li><br/></li>
                 <li></li>
                 <li></li>
-                <li><span class="mem">${size}/1000</span></li>
-
+                <li><span class="mem">${size}/${sizeMax}</span></li>
+                <sec:authorize access="hasRole('ROLE_USER')">
+                    <li class="liHref"><a href="<spring:url value="/buyplace"/>">More place</a></li>
+                </sec:authorize>
             </ul>
         </div>
 
@@ -101,7 +103,7 @@
                            href="/deletePhoto?path=<spring:url value="${item}"/>">🗑</a>
                         <a class="infoImage" title="View" href="<spring:url value="${item}"/>">ᐈ</a>
                         <a class="infoImage" title="Share this"
-                               href="/gallery/?path=<spring:url value="${item}"/>">ᕮᕭ</a>
+                           href="/gallery/?path=<spring:url value="${item}"/>">ᕮᕭ</a>
                         <a class="infoImage download" title="Download"
                            href="/download?path=<spring:url value="${item}"/>">&#10506;</a>
                     </h2>

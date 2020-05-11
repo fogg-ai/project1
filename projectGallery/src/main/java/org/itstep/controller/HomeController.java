@@ -40,6 +40,7 @@ public class HomeController {
     @GetMapping("/")
     public String index(Model model){
         model.addAttribute("userGalleryDto",new UserGalleryDto());
+
         return "index";
     }
 
@@ -58,6 +59,9 @@ public class HomeController {
         model.addAttribute("size",
                 Precision.round(userGalleryRepository.findUserByLogin(name).getPhoto().getSize() * 0.0000010,
                         3));
+        model.addAttribute("sizeMax",
+                Precision.round(userGalleryRepository.findUserByLogin(name).getPhoto().getMaxSize() * 0.0000010,
+                        0));
         model.addAttribute("pathList", findDirectoryPhotoService.findPath());
         if(path != null) {
             uploadPhotoService.openSourcePhoto(path);

@@ -37,9 +37,11 @@ public class UserGallery implements UserDetails {
     @NotBlank
     @NotNull
     private String password;
-    @NotBlank
-    @NotNull
-    private String role;
+
+
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id")
+    private Role rolePerson;
 
 
     @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
@@ -48,7 +50,7 @@ public class UserGallery implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return AuthorityUtils.createAuthorityList(role);
+        return AuthorityUtils.createAuthorityList(rolePerson.getRole());
     }
 
     @Override
