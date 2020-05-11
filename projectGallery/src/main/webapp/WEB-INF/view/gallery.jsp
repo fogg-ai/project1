@@ -98,12 +98,12 @@
                 <div class="block">
                     <h2>
                         <a class="infoImage" title="Delete"
-                           href="/deletePhoto?path=<spring:url value="${item}"/>"/>🗑</a>
+                           href="/deletePhoto?path=<spring:url value="${item}"/>">🗑</a>
                         <a class="infoImage" title="View" href="<spring:url value="${item}"/>">ᐈ</a>
                         <a class="infoImage" title="Share this"
-                           href="/gallery/?path=<spring:url value="${item}"/>"/>ᕮᕭ</a>
-                        <a class="infoImage" title="Download"
-                           href="/download?path=<spring:url value="${item}"/>"/>&#10506;</a>
+                               href="/gallery/?path=<spring:url value="${item}"/>">ᕮᕭ</a>
+                        <a class="infoImage download" title="Download"
+                           href="/download?path=<spring:url value="${item}"/>">&#10506;</a>
                     </h2>
                 </div>
             </span>
@@ -112,9 +112,17 @@
     </div>
 
     ${message}
+    <div class="clearly">
+    </div>
+
+
 </main>
+
+
+<div id="footerGal">
+    <span v-bind:class="info"> 2020 PersonGallery</span> <!--©-->
+</div>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="<spring:url value="/static/js/slideMenu.js"/>"></script>
-
 </body>
 </html>

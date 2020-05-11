@@ -9,6 +9,7 @@
     align-items: center;
     justify-content: center;
     background: #ececec;
+    color: black;
 }
 
 .infoNight{
@@ -18,6 +19,7 @@
     justify-content: center;
     background: #262626;
     color: #ececec;
+
 }
 
 .autDay{
@@ -80,13 +82,22 @@
     background: white;
     color: #000000;
     height: auto;
-    height: 200%;
 }
+
+
 .contentNight{
     background: #363636;
     color: white;
-    height: 200%;
+    height: auto;
 }
+.clearly{
+    height: 60%;
+}
+
+.download{
+    padding-top: 4px;
+}
+
 
 .nameDay{
     font-size: 20px;

@@ -27,7 +27,7 @@ public class DownloadPhotoController {
     }
 
     @GetMapping("/download")
-    public void getFile(@RequestParam String path, HttpServletResponse response){
+    public void getFile(@RequestParam String path, HttpServletResponse response) {
         UserGallery user = (UserGallery) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String name = user.getLogin();
         UserGallery userByLogin = userGalleryRepository.findUserByLogin(name);
@@ -35,17 +35,15 @@ public class DownloadPhotoController {
         int i = path.lastIndexOf('/');
         File file = new File(userByLogin.getPhoto().getPath() + path.substring(i));
 
-        System.out.println(path.substring(i+1));
-        System.out.println(userByLogin.getPhoto().getPath() + path.substring(i+1));
-        response.setHeader("Content-disposition", "attachment;filename=" + path.substring(i+1));
-            response.setContentType("image/jpg");
+        response.setHeader("Content-disposition", "attachment;filename=" + path.substring(i + 1));
+        response.setContentType("image/jpg");
 
-            try {
-                Files.copy(file.toPath(), response.getOutputStream());
-                response.getOutputStream().flush();
-            } catch ( IOException e) {
-                throw new RuntimeException("IOError writing file to output stream");
-            }
+        try {
+            Files.copy(file.toPath(), response.getOutputStream());
+            response.getOutputStream().flush();
+        } catch (IOException e) {
+            throw new RuntimeException("IOError writing file to output stream");
+        }
     }
 
 }

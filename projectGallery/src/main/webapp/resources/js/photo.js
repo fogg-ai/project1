@@ -21,9 +21,9 @@ document.addEventListener('DOMContentLoaded', function () {
             form: null,
         }, watch: {
             day: function (e) {
-
                 localStorage.setItem('day', this.day);
                 main.day = this.day;
+                footerGal.day = this.day;
                 if (this.day) {
                     this.form = 'formDay';
                     this.send = 'sendDay';
@@ -103,17 +103,16 @@ document.addEventListener('DOMContentLoaded', function () {
         data: {
             day: true,
             content: null,
-            path: null
+            path: null,
         }, watch: {
             day: function (e) {
-                if (header.day) {
+                if (this.day) {
                     this.content = 'contentDay';
                     this.path = 'pathDay';
                 } else {
                     this.content = 'contentNight';
                     this.path = 'pathNight';
                 }
-
             }
         },
         mounted() {
@@ -125,6 +124,30 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.path = 'pathNight';
             }
 
+        }
+    })
+    let footerGal = new Vue({
+        el:"#footerGal",
+        data: {
+            day: true,
+            info: null
+        }, watch: {
+            day: function (e) {
+
+                if (this.day) {
+                    this.info = 'infoDay';
+                } else {
+                    this.info = 'infoNight';
+                }
+
+            }
+        },
+        mounted() {
+            if (localStorage.getItem('day') === 'true') {
+                this.info = 'infoDay';
+            } else if (localStorage.getItem('day') === 'false') {
+                this.info = 'infoNight';
+            }
         }
     })
 }, false);
