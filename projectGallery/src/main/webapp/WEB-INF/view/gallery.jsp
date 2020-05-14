@@ -14,6 +14,8 @@
 
     <script src="<spring:url value="/static/js/copyPath.js"/>"></script>
 
+    <script src="<spring:url value="/static/js/sendPhoto.js"/>"></script>
+
 </head>
 <body>
 <header id="logout">
@@ -48,16 +50,13 @@
 
 
         <span v-bind:class="name">𝒫𝑒𝓇𝓈𝑜𝓃 𝒢𝒶𝓁𝓁𝑒𝓇𝓎</span>
-        <%--        --%>
+
 
         <div v-show="upload" v-bind:class="form">
-            <form enctype="multipart/form-data" method="post" action="/upload">
+            <form enctype="multipart/form-data" id="formPhoto" method="post" action="/upload">
                 <label v-bind:class="send" for="files">Choose a photo</label>
                 <input v-bind:class="send" id="files" class="fileArea" name="photo" type="file">
-                <%--                <sec:csrfInput/>--%>
                 <a type="submit" v-bind:class="cancel" v-on:click="upload=!upload" href="#!">Cancel</a>
-                <button v-bind:class="button" type="submit">Send
-                </button>
                 </p>
 
             </form>
@@ -67,10 +66,6 @@
             <form class="modal" action="/logout" method="POST">
                 <h3 v-bind:class="h3">Нou definitely want to go out?</h3>
                 <br/>
-                <div class="modal-content">
-                    <%--                <sec:csrfInput/>--%>
-                </div>
-
                 <div class="fieldSubmit">
                     <a type="submit" v-bind:class="cancel" v-on:click="log=!log" href="#!">Cancel</a>
                     <button v-bind:class="button" type="submit">Log out
@@ -86,10 +81,10 @@
     </div>
     <div class="allPhoto">
         <div class="pathOpenPhoto">
-            <c:if test="${param.path != null}">
+            <c:if test="${param.path != null || pathOpenPhoto != null}">
                 <span class="blockPhoto">
                 <a v-bind:class="path" id="path" href="<spring:url value="${pathOpenPhoto}"/>">
-                    http://localhost:8080${pathOpenPhoto}</a>
+                    <c:if test='${!pathOpenPhoto.equals("There is no such photo")}'>http://localhost:8080</c:if>${pathOpenPhoto}</a>
                 <button title="Click to copy" class="buttonCopy"><h1>⎘</h1></button>
                 </span>
             </c:if>

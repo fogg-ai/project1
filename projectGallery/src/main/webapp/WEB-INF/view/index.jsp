@@ -113,6 +113,7 @@
                 <source src="<spring:url value="/static/imageMainPage/1.mp4"/>" type="video/mp4">
                 <source src="<spring:url value="/static/imageMainPage/1.mp4"/>" type="video/webm">
             </video>
+           
         </div>
     </div>
 

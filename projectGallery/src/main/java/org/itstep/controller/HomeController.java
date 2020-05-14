@@ -58,7 +58,7 @@ public class HomeController {
         model.addAttribute("message", uploadPhotoService.getCheck());
         model.addAttribute("size",
                 Precision.round(userGalleryRepository.findUserByLogin(name).getPhoto().getSize() * 0.0000010,
-                        3));
+                        1));
         model.addAttribute("sizeMax",
                 Precision.round(userGalleryRepository.findUserByLogin(name).getPhoto().getMaxSize() * 0.0000010,
                         0));
