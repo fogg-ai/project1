@@ -29,8 +29,8 @@
                 <li v-on:click="log=!log"><a href="#logout">Log out</a></li><!--v-bind:class="aut"-->
                 <li v-on:click="upload=!upload"><a href="#upload">Upload</a></li>
 
-                <li><input type="checkbox" class="checkbox" id="checkbox"/><!-- v-model="checked"-->
-                    <label id="checkboxD" v-on:click="day=!day" for="checkbox"></label></li>
+                <li><input type="checkbox" class="checkbox" id="checkbox" v-model="day" />
+                    <label id="checkboxD"  for="checkbox"></label></li>
                 <li><br/></li>
                 <li></li>
                 <li></li>
@@ -81,7 +81,7 @@
     </div>
     <div class="allPhoto">
         <div class="pathOpenPhoto">
-            <c:if test="${param.path != null || pathOpenPhoto != null}">
+            <c:if test="${param.path != null}">
                 <span class="blockPhoto">
                 <a v-bind:class="path" id="path" href="<spring:url value="${pathOpenPhoto}"/>">
                     <c:if test='${!pathOpenPhoto.equals("There is no such photo")}'>http://localhost:8080</c:if>${pathOpenPhoto}</a>

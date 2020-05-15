@@ -4,7 +4,7 @@
 }
 
 .infoDay{
-    height: 7em;
+    height: 9em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,7 +13,7 @@
 }
 
 .infoNight{
-    height: 7em;
+    height: 9em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,7 +91,7 @@
     height: auto;
 }
 .clearly{
-    height: 60%;
+    height: 77%;
 }
 
 .download{

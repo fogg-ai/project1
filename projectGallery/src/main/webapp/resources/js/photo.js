@@ -4,13 +4,14 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem('day', true);
     }
 
+
+
     let header = new Vue({
         el: '#logout',
         data: {
             log: false,
             upload: false,
             day: localStorage.getItem('day'),
-            checked: localStorage.getItem('day'),
             name: null,
             headerHtml: null,
             aut: null,
@@ -68,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         mounted() {
             localStorage.setItem('day', this.day);
-            localStorage.setItem('day', localStorage.getItem('day'));
 
             if (localStorage.getItem('day') === 'true') {
                 this.form = 'formDay';
@@ -96,7 +96,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         }
     })
-
 
     let main = new Vue({
         el: '#main',
