@@ -74,7 +74,6 @@ header{
     align-items: center;
     justify-content: center;
     background: #ececec;
-    height: 20%;
 }
 
 .fullscreen-bg {
@@ -83,7 +82,7 @@ header{
     position: relative;
     height: 100%;
     width: 100%;
-    padding-top:45%;
+    padding-top:47%;
     margin-top: 50px;
 }
 
@@ -122,6 +121,7 @@ header{
 
 form{
     padding: 50px;
+    background: #ececec;
     border: 1px solid #cccccc;
     border-radius: 10px;
     position: fixed; top: 45%; left: 50%;
@@ -151,6 +151,7 @@ input{
     border:none;
     padding: 5px 50px 5px 5px;
     border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
 button{

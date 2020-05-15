@@ -23,8 +23,8 @@
 
         <ul>
             <sec:authorize access="isAnonymous()">
-                <li v-on:click="reg=!reg"><a  href="#reg">Sing up</a></li>
-                <li v-on:click="log=!log"><a  href="#login">Sing in</a></li>
+                <li v-on:click="reg=!reg"><a href="#reg">Sing up</a></li>
+                <li v-on:click="log=!log"><a href="#login">Sing in</a></li>
             </sec:authorize>
             <sec:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
                 <li class="link"><a href="/gallery">Gallery</a></li>
@@ -45,12 +45,12 @@
     <div class="form">
         <form:form modelAttribute="userGalleryDto" class="modal" action="/login" v-show="log" method="POST">
             <div class="modal-content">
-
+                <h2>Sing in</h2>
                 <div class="field">
                     <label>Login:<input class="fieldL" name="login" required/></label>
                 </div>
                 <div class="field">
-                    <label>Password:<input name="password"  class="fieldP" required type="password"/></label>
+                    <label>Password:<input name="password" class="fieldP" required type="password"/></label>
                     <sec:csrfInput/>
                 </div>
                 <div class="field">
@@ -76,18 +76,20 @@
     <div class="form reg">
         <form:form modelAttribute="userGalleryDto" class="modal" action="/register" v-show="reg" method="POST">
             <div class="modal-content">
-
+                <h2>Register</h2>
                 <div class="field">
                     <form:label path="login">Login:</form:label>
                     <form:input path="login" required="required" class="fieldR"/>
                     <h5><form:errors path="login" class="helper-text" data-error="wrong" data-success="right"/></h5>
                 </div>
                 <div class="field">
-                    <form:label path="password">Password:<form:input maxlength="16" path="password" type="password" required="required" class="fieldP"/></form:label>
-                    <h5><form:errors path="password"  class="helper-text" data-error="wrong" data-success="right"/></h5>
+                    <form:label path="password">Password:<form:input maxlength="16" path="password" type="password"
+                                                                     required="required" class="fieldP"/></form:label>
+                    <h5><form:errors path="password" class="helper-text" data-error="wrong" data-success="right"/></h5>
                 </div>
                 <div class="field">
-                    <form:label path="email">Email:<form:input path="email" type="email" required="required" class="fieldE"/></form:label>
+                    <form:label path="email">Email:<form:input path="email" type="email" required="required"
+                                                               class="fieldE"/></form:label>
                     <h5><form:errors path="email" class="helper-text" data-error="wrong" data-success="right"/></h5>
 
                     <sec:csrfInput/>
@@ -108,12 +110,13 @@
     <div class="content">
         <div class="fullscreen-bg">
             <div class="overlay">
+                <%--            </div>--%>
+                <%--            <video loop="" muted="" autoplay="" class="fullscreen-bg__video">--%>
+                <%--                <source src="<spring:url value="/static/imageMainPage/1.mp4"/>" type="video/mp4">--%>
+                <%--                <source src="<spring:url value="/static/imageMainPage/1.mp4"/>" type="video/webm">--%>
+                </video>
+                <img src="<spring:url value="/static/imageMainPage/mainImg.png"/>" alt="titleImg"/>
             </div>
-            <video loop="" muted="" autoplay="" class="fullscreen-bg__video">
-                <source src="<spring:url value="/static/imageMainPage/1.mp4"/>" type="video/mp4">
-                <source src="<spring:url value="/static/imageMainPage/1.mp4"/>" type="video/webm">
-            </video>
-           
         </div>
     </div>
 
