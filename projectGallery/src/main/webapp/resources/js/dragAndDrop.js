@@ -1,30 +1,53 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // let div = document.createElement('div');
-    // return ('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)
-    //
-    //
-    // let isAdvancedUpload = function () {
-    //     let div = document.createElement('div');
-    //     return (('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window;
-    // }();
-    //
-    // if (isAdvancedUpload) {
-    //
-    //     var droppedFiles = false;
-    //
-    //     $form.on('drag dragstart dragend dragover dragenter dragleave drop', function(e) {
-    //         e.preventDefault();
-    //         e.stopPropagation();
-    //     })
-    //         .on('dragover dragenter', function() {
-    //             $form.addClass('is-dragover');
-    //         })
-    //         .on('dragleave dragend drop', function() {
-    //             $form.removeClass('is-dragover');
-    //         })
-    //         .on('drop', function(e) {
-    //             droppedFiles = e.originalEvent.dataTransfer.files;
-    //         });
-    //
-    // }
+
+    let dropArea = document.getElementById('drop-area');
+    let form = document.getElementById('formPhoto');
+
+    ;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, preventDefaults, false)
+    })
+    function preventDefaults (e) {
+        e.preventDefault()
+        e.stopPropagation()
+    }
+    ;['dragenter', 'dragover'].forEach(eventName => {
+        dropArea.addEventListener(eventName, highlight, false)
+
+    })
+    ;['dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, unhighlight, false);
+    })
+    function highlight(e) {
+        dropArea.classList.add('highlight')
+
+
+    }
+    function unhighlight(e) {
+        dropArea.classList.remove('highlight');
+    }
+
+    dropArea.addEventListener('drop', handleDrop, false)
+    function handleDrop(e) {
+        let dt = e.dataTransfer
+        let files = dt.files
+        handleFiles(files)
+
+    }
+
+    function handleFiles(files) {
+        ([...files]).forEach(uploadFile)
+    }
+
+    function uploadFile(file) {
+        let url = 'http://localhost:8080/rest/photo';
+        let formData = new FormData()
+        formData.append('file', file)
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(() => { console.log("nice")})
+            .catch(() => { console.log("bad") })
+        window.location.reload()
+    }
 }, false);

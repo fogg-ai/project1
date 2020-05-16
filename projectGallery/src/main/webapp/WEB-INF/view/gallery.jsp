@@ -16,7 +16,7 @@
 
     <script src="<spring:url value="/static/js/sendPhoto.js"/>"></script>
 
-    <script src="<spring:url value="/static/js/dragAndDrop.js"/>"></script>
+
 </head>
 <body>
 <header id="logout">
@@ -30,8 +30,8 @@
                 <li v-on:click="log=!log"><a href="#logout">Log out</a></li><!--v-bind:class="aut"-->
                 <li v-on:click="upload=!upload"><a href="#upload">Upload</a></li>
 
-                <li><input type="checkbox" class="checkbox" id="checkbox" v-model="day" />
-                    <label id="checkboxD"  for="checkbox"></label></li>
+                <li><input type="checkbox" class="checkbox" id="checkbox" v-model="day"/>
+                    <label id="checkboxD" for="checkbox"></label></li>
                 <li><br/></li>
                 <li></li>
                 <li></li>
@@ -54,26 +54,31 @@
 
 
         <div v-show="upload" v-bind:class="form">
-            <form enctype="multipart/form-data" id="formPhoto" method="post" action="/upload">
-                <label v-bind:class="send" for="files">Choose a photo</label>
-                <input v-bind:class="send" multiple id="files" class="fileArea" name="photo" type="file">
-                <a type="submit" v-bind:class="cancel" v-on:click="upload=!upload" href="#!">Cancel</a>
-                </p>
+            <div id="drop-area">
+                <form enctype="multipart/form-data" id="formPhoto" method="post" action="/upload">
+                    <label v-bind:class="send" for="files">Choose a photo</label>
+                    <input v-bind:class="send" class="files" id="files"
+                           class="fileArea" name="photo" type="file" multiple>
+                    <a type="submit" v-bind:class="cancel" v-on:click="upload=!upload" href="#!">Cancel</a>
+                    </p>
 
-            </form>
+                </form>
+            </div>
         </div>
+    </div>
 
-        <div v-show="log" v-bind:class="form">
-            <form class="modal" action="/logout" method="POST">
-                <h3 v-bind:class="h3">Нou definitely want to go out?</h3>
-                <br/>
-                <div class="fieldSubmit">
-                    <a type="submit" v-bind:class="cancel" v-on:click="log=!log" href="#!">Cancel</a>
-                    <button v-bind:class="button" type="submit">Log out
-                    </button>
-                </div>
-            </form>
-        </div>
+
+    <div v-show="log" v-bind:class="form">
+        <form class="modal" action="/logout" method="POST">
+            <h3 v-bind:class="h3">Нou definitely want to go out?</h3>
+            <br/>
+            <div class="fieldSubmit">
+                <a type="submit" v-bind:class="cancel" v-on:click="log=!log" href="#!">Cancel</a>
+                <button v-bind:class="button" type="submit">Log out
+                </button>
+            </div>
+        </form>
+    </div>
     </div>
 </header>
 
@@ -85,7 +90,8 @@
             <c:if test="${param.path != null}">
                 <span class="blockPhoto">
                 <a v-bind:class="path" id="path" href="<spring:url value="${pathOpenPhoto}"/>">
-                    <c:if test='${!pathOpenPhoto.equals("There is no such photo")}'>http://localhost:8080</c:if>${pathOpenPhoto}</a>
+                    <c:if test='${!pathOpenPhoto.equals("There is no such photo")}'>http://localhost:8080</c:if>
+                        ${pathOpenPhoto}</a>
                 <button title="Click to copy" class="buttonCopy"><h1>⎘</h1></button>
                 </span>
             </c:if>
@@ -113,7 +119,6 @@
     <div class="clearly">
     </div>
 
-
 </main>
 
 
@@ -122,5 +127,6 @@
 </div>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="<spring:url value="/static/js/slideMenu.js"/>"></script>
+<script src="<spring:url value="/static/js/dragAndDrop.js"/>"></script>
 </body>
 </html>
