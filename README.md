@@ -36,7 +36,8 @@
 ## Развертывание
 
 1. Установить Tomcat
-2.
+2. Cоздание папки photo в webapp
+3. Cоздание папки openPhoto в webapp
 
 
 
