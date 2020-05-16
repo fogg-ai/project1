@@ -45,7 +45,7 @@
     <div class="form">
         <form:form modelAttribute="userGalleryDto" class="modal" action="/login" v-show="log" method="POST">
             <div class="modal-content">
-                <h2>Sing in</h2>
+
                 <div class="field">
                     <label>Login:<input class="fieldL" name="login" required/></label>
                 </div>
@@ -64,11 +64,7 @@
                 <button type="submit">Sing in
                 </button>
             </div>
-            <c:if test="${param.error == 'notentry'}">
-                Repeat the entry, the data is incorrect.
-            </c:if>
         </form:form>
-
 
     </div>
 
@@ -101,25 +97,38 @@
                 <button type="submit">Sing up
                 </button>
             </div>
-            ${errorLogin}
+
         </form:form>
     </div>
 
 </header>
 <main>
     <div class="content">
+
         <div class="fullscreen-bg">
+
             <div class="overlay">
-                <%--            </div>--%>
-                <%--            <video loop="" muted="" autoplay="" class="fullscreen-bg__video">--%>
-                <%--                <source src="<spring:url value="/static/imageMainPage/1.mp4"/>" type="video/mp4">--%>
-                <%--                <source src="<spring:url value="/static/imageMainPage/1.mp4"/>" type="video/webm">--%>
-                </video>
-                <img src="<spring:url value="/static/imageMainPage/mainImg.png"/>" alt="titleImg"/>
+
+                <c:if test="${param.error == 'notentry'}">
+                    <div class="errorLog">
+                        Repeat the entry, the data is incorrect.
+                    </div>
+                </c:if>
+                <c:if test="${errorLogin.equals('This login is already taken')}">
+                    <div class="errorLog">
+                            ${errorLogin}.
+                    </div>
+                </c:if>
+
             </div>
+            <video loop="" muted="" autoplay="" class="fullscreen-bg__video">
+                <source src="<spring:url value="/static/imageMainPage/1.mp4"/>" type="video/mp4">
+                <source src="<spring:url value="/static/imageMainPage/1.mp4"/>" type="video/webm">
+            </video>
+            <%--                <img src="<spring:url value="/static/imageMainPage/mainImg.png"/>" alt="titleImg"/>--%>
         </div>
     </div>
-
+    </div>
 
 </main>
 <footer>

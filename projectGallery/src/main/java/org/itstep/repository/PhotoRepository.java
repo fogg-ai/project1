@@ -18,6 +18,4 @@ public interface PhotoRepository extends JpaRepository<Photo,Integer> {
     @Query("update Photo p set p.maxSize = ?1 where p.id = ?2")
     void setMaxSize(long size, Integer id);
 
-
-
 }

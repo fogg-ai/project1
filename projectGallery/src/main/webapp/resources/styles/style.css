@@ -325,3 +325,13 @@ body {
 .link a{
     display: block;
 }
+.errorLog{
+    border: 1px solid #ccc;
+    padding: 5px 10px 5px 10px;
+    display: inline-block;
+    background: #ececec;
+    border-radius: 5px;
+    font-family: sans-serif;
+    position: absolute;
+    left: 42%;
+}

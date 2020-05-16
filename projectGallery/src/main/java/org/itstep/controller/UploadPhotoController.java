@@ -46,7 +46,7 @@ public class UploadPhotoController {
     }
 
     @PostMapping("/upload")
-    public String upload(@RequestParam("photo") MultipartFile f, Model model) {
+    public String upload(@RequestParam("photo") List<MultipartFile> f, Model model) {
        uploadPhotoService.operationFile(f);
         return "redirect:/gallery";
     }
@@ -63,7 +63,7 @@ public class UploadPhotoController {
         String name = user.getLogin();
         UserGallery userByLogin = userGalleryRepository.findUserByLogin(name);
 
-        photoRepository.setMaxSize(2000000000,userByLogin.getPhoto().getId());
+        photoRepository.setMaxSize(2000000000, userByLogin.getPhoto().getId());
         roleRepository.setNewRole("ROLE_SUPERUSER",userByLogin.getRolePerson().getId());
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         },
         mounted() {
-            localStorage.setItem('day', this.day);
+            localStorage.setItem('day',  localStorage.getItem('day'));
 
             if (localStorage.getItem('day') === 'true') {
                 this.form = 'formDay';

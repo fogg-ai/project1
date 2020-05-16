@@ -16,6 +16,7 @@
 
     <script src="<spring:url value="/static/js/sendPhoto.js"/>"></script>
 
+    <script src="<spring:url value="/static/js/dragAndDrop.js"/>"></script>
 </head>
 <body>
 <header id="logout">
@@ -55,7 +56,7 @@
         <div v-show="upload" v-bind:class="form">
             <form enctype="multipart/form-data" id="formPhoto" method="post" action="/upload">
                 <label v-bind:class="send" for="files">Choose a photo</label>
-                <input v-bind:class="send" id="files" class="fileArea" name="photo" type="file">
+                <input v-bind:class="send" multiple id="files" class="fileArea" name="photo" type="file">
                 <a type="submit" v-bind:class="cancel" v-on:click="upload=!upload" href="#!">Cancel</a>
                 </p>
 

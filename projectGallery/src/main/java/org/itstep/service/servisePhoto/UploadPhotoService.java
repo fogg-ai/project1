@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.List;
 
 @Service
 public class UploadPhotoService {
@@ -35,30 +36,32 @@ public class UploadPhotoService {
         return check;
     }
 
-    public boolean uploadFile(MultipartFile file, String path, long size, long maxSize) {
+    public boolean uploadFile(List<MultipartFile> file, String path, long size, long maxSize) {
         check = "";
         boolean c = false;
         if (size <= maxSize) {
-            if (file.getContentType().equals("image/jpeg") || file.getContentType().equals("image/png") ||
-                    file.getContentType().equals("video/mpeg")) {
-                File dir = new File(path);
-                if (!dir.exists()) {
-                    dir.mkdir();
-                }
-                File j = new File(path + File.separator + file.getOriginalFilename());
+            for (MultipartFile fill : file) {
+                if (fill.getContentType().equals("image/jpeg") || fill.getContentType().equals("image/png") ||
+                        fill.getContentType().equals("video/mpeg")) {
+                    File dir = new File(path);
+                    if (!dir.exists()) {
+                        dir.mkdir();
+                    }
+                    File j = new File(path + File.separator + fill.getOriginalFilename());
 
-                try {
-                    file.transferTo(j);
-                    c = true;
-                    check = "";
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    try {
+                        fill.transferTo(j);
+                        c = true;
+                        check = "";
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    c = false;
+                    check = "Type file not can save check file(png,jpeg,mpeg)";
                 }
-            } else {
-                c = false;
-                check = "Type file not can save check file(png,jpeg,mpeg)";
             }
-        } else {
+        } else{
             c = false;
             check = "Not enough storage";
         }
@@ -90,7 +93,7 @@ public class UploadPhotoService {
 
     }
 
-    public void operationFile(MultipartFile f) {
+    public void operationFile(List<MultipartFile> f) {
         UserGallery user = (UserGallery) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String name = user.getLogin();
         UserGallery userByLogin = userGalleryRepository.findUserByLogin(name);
@@ -98,8 +101,11 @@ public class UploadPhotoService {
 
         boolean b = this.uploadFile(f, photoPackage.getPath(), photoPackage.getSize(), photoPackage.getMaxSize());
         if (b) {
-            photoPackage.setSize(photoPackage.getSize() + f.getSize());
-            photoRepository.setUserInfoById(photoPackage.getSize(), userByLogin.getPhoto().getId());
+            for (MultipartFile fill : f) {
+                photoPackage.setSize(photoPackage.getSize() + fill.getSize());
+                photoRepository.setUserInfoById(photoPackage.getSize(), userByLogin.getPhoto().getId());
+            }
+
         }
     }
 }

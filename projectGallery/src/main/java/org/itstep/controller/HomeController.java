@@ -57,10 +57,10 @@ public class HomeController {
         String name = principal.getLogin();
         model.addAttribute("message", uploadPhotoService.getCheck());
         model.addAttribute("size",
-                Precision.round(userGalleryRepository.findUserByLogin(name).getPhoto().getSize() * 0.0000010,
+                Precision.round(userGalleryRepository.findUserByLogin(name).getPhoto().getSize() * 0.000001,
                         1));
         model.addAttribute("sizeMax",
-                Precision.round(userGalleryRepository.findUserByLogin(name).getPhoto().getMaxSize() * 0.0000010,
+                Precision.round(userGalleryRepository.findUserByLogin(name).getPhoto().getMaxSize() * 0.000001,
                         0));
         model.addAttribute("pathList", findDirectoryPhotoService.findPath());
         if(path != null) {
