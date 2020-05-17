@@ -8,6 +8,7 @@
         <sec:intercept-url pattern="/login/**" access="isAnonymous()"/>
         <sec:intercept-url pattern="/register/**" access="isAnonymous()"/>
         <sec:intercept-url pattern="/opensource/**" access="hasAnyRole('ROLE_USER','ROLE_SUPERUSER')"/>
+        <sec:intercept-url pattern="/rest/**" access="hasAnyRole('ROLE_USER','ROLE_SUPERUSER')"/>
         <sec:intercept-url pattern="/photo/**" access="hasAnyRole('ROLE_USER','ROLE_SUPERUSER')"/>
         <sec:intercept-url pattern="/download/**" access="hasAnyRole('ROLE_USER','ROLE_SUPERUSER')"/>
         <sec:intercept-url pattern="/delete/**" access="hasAnyRole('ROLE_USER','ROLE_SUPERUSER')"/>

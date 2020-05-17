@@ -19,84 +19,88 @@
 
 </head>
 <body>
-<header id="logout">
-    <div v-bind:class="headerHtml">
-        <div class="menu">
-            <div class="icon-close">
-                <img src="<spring:url value="/static/imageMainPage/close-btn.png"/>">
+
+</div>
+
+<div class="drop-area">
+    <header id="logout">
+        <div v-bind:class="headerHtml">
+            <div class="menu">
+                <div class="icon-close">
+                    <img src="<spring:url value="/static/imageMainPage/close-btn.png"/>">
+                </div>
+                <ul>
+                    <li v-on:click="log=!log"><a href="#logout">Log out</a></li><!--v-bind:class="aut"-->
+                    <li v-on:click="upload=!upload"><a href="#upload">Upload</a></li>
+
+                    <li><input type="checkbox" class="checkbox" id="checkbox" v-model="day"/>
+                        <label id="checkboxD" for="checkbox"></label></li>
+                    <li><br/></li>
+                    <li></li>
+                    <li></li>
+                    <li><span class="mem">${size}/${sizeMax}</span></li>
+                    <sec:authorize access="hasRole('ROLE_USER')">
+                        <li class="liHref"><a href="<spring:url value="/buyplace"/>">More place</a></li>
+                    </sec:authorize>
+                </ul>
             </div>
-            <ul>
-                <%--                <li><h6 class="h5Night">Signed in as <sec:authentication property="name"/></h6></li>--%>
-                <li v-on:click="log=!log"><a href="#logout">Log out</a></li><!--v-bind:class="aut"-->
-                <li v-on:click="upload=!upload"><a href="#upload">Upload</a></li>
 
-                <li><input type="checkbox" class="checkbox" id="checkbox" v-model="day"/>
-                    <label id="checkboxD" for="checkbox"></label></li>
-                <li><br/></li>
-                <li></li>
-                <li></li>
-                <li><span class="mem">${size}/${sizeMax}</span></li>
-                <sec:authorize access="hasRole('ROLE_USER')">
-                    <li class="liHref"><a href="<spring:url value="/buyplace"/>">More place</a></li>
-                </sec:authorize>
-            </ul>
-        </div>
+            <div class="background">
 
-        <div class="background">
-
-            <div class="icon-menu">
-                <img src="<spring:url value="/static/imageMainPage/menu-ham-icon.png"/>">
+                <div class="icon-menu">
+                    <img src="<spring:url value="/static/imageMainPage/menu-ham-icon.png"/>">
+                </div>
             </div>
-        </div>
 
 
-        <span v-bind:class="name">𝒫𝑒𝓇𝓈𝑜𝓃 𝒢𝒶𝓁𝓁𝑒𝓇𝓎</span>
+            <span v-bind:class="name">𝒫𝑒𝓇𝓈𝑜𝓃 𝒢𝒶𝓁𝓁𝑒𝓇𝓎</span>
 
 
-        <div v-show="upload" v-bind:class="form">
-            <div id="drop-area">
+            <div v-show="upload" v-bind:class="form">
+
                 <form enctype="multipart/form-data" id="formPhoto" method="post" action="/upload">
                     <label v-bind:class="send" for="files">Choose a photo</label>
-                    <input v-bind:class="send" class="files" id="files"
+                    <input v-bind:class="send" id="files"
                            class="fileArea" name="photo" type="file" multiple>
                     <a type="submit" v-bind:class="cancel" v-on:click="upload=!upload" href="#!">Cancel</a>
                     </p>
 
                 </form>
+
             </div>
+
+
+            <div v-show="log" v-bind:class="form">
+                <form class="modal" action="/logout" method="POST">
+                    <h3 v-bind:class="h3">Нou definitely want to go out?</h3>
+                    <br/>
+                    <div class="fieldSubmit">
+                        <a type="submit" v-bind:class="cancel" v-on:click="log=!log" href="#!">Cancel</a>
+                        <button v-bind:class="button" type="submit">Log out
+                        </button>
+                    </div>
+                </form>
+            </div>
+
         </div>
-    </div>
+    </header>
 
+    <main id="main" v-bind:class="content">
 
-    <div v-show="log" v-bind:class="form">
-        <form class="modal" action="/logout" method="POST">
-            <h3 v-bind:class="h3">Нou definitely want to go out?</h3>
-            <br/>
-            <div class="fieldSubmit">
-                <a type="submit" v-bind:class="cancel" v-on:click="log=!log" href="#!">Cancel</a>
-                <button v-bind:class="button" type="submit">Log out
-                </button>
-            </div>
-        </form>
-    </div>
-    </div>
-</header>
-
-<main id="main" v-bind:class="content">
-    <div class="pusto">
-    </div>
-    <div class="allPhoto">
-        <div class="pathOpenPhoto">
-            <c:if test="${param.path != null}">
+        <div class="pusto">
+        </div>
+        <div class="allPhoto">
+            <div class="pathOpenPhoto">
+                <c:if test="${param.path != null}">
                 <span class="blockPhoto">
                 <a v-bind:class="path" id="path" href="<spring:url value="${pathOpenPhoto}"/>">
                     <c:if test='${!pathOpenPhoto.equals("There is no such photo")}'>http://localhost:8080</c:if>
                         ${pathOpenPhoto}</a>
                 <button title="Click to copy" class="buttonCopy"><h1>⎘</h1></button>
                 </span>
-            </c:if>
-        </div>
-        <c:forEach items="${pathList}" var="item" varStatus="loop">
+                </c:if>
+            </div>
+            <c:forEach items="${pathList}" var="item" varStatus="loop">
             <span class="holder">
                 <img src="<spring:url value="${item}" />">
                 <div class="block">
@@ -111,19 +115,21 @@
                     </h2>
                 </div>
             </span>
-        </c:forEach>
+            </c:forEach>
 
-    </div>
+        </div>
 
-    ${message}
-    <div class="clearly">
-    </div>
+        ${message}
+        <div class="clearly">
+        </div>
 
-</main>
+    </main>
 
-
+</div>
 <div id="footerGal">
     <span v-bind:class="info"> 2020 PersonGallery</span> <!--©-->
+</div>
+
 </div>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="<spring:url value="/static/js/slideMenu.js"/>"></script>
