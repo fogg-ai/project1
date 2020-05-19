@@ -42,6 +42,8 @@ public class RegisterController {
         }
         roleDto.setRole("ROLE_USER");
         photoDto.setPath("src/main/webapp/photo/" + userGalleryDto.getLogin());
+        photoDto.setMinPhotoPath("src/main/webapp/photoMin/" + userGalleryDto.getLogin());
+        photoDto.setMinPhotoUrl(photoDto.getMinPhotoPath().substring(15));
         photoDto.setPathUrl(photoDto.getPath().substring(15));
         photoDto.setSize(0);
         photoDto.setMaxSize(1000000000);

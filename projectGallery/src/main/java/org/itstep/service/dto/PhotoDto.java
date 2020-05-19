@@ -25,6 +25,15 @@ public class PhotoDto  {
     @NotNull
     private String pathUrl;
 
+
+    @NotBlank
+    @NotNull
+    private String minPhotoPath;
+
+    @NotBlank
+    @NotNull
+    private String minPhotoUrl;
+
     private long size;
 
     private long maxSize;

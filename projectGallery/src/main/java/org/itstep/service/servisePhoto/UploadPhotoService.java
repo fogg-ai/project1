@@ -4,6 +4,7 @@ import org.itstep.domain.Photo;
 import org.itstep.domain.UserGallery;
 import org.itstep.repository.PhotoRepository;
 import org.itstep.repository.UserGalleryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -26,10 +27,13 @@ public class UploadPhotoService {
     final
     ResourceLoader resourceLoader;
 
-    public UploadPhotoService(ResourceLoader resourceLoader, UserGalleryRepository userGalleryRepository, PhotoRepository photoRepository) {
+    final
+    LittlePhotoService littlePhotoService;
+    public UploadPhotoService(ResourceLoader resourceLoader, UserGalleryRepository userGalleryRepository, PhotoRepository photoRepository, LittlePhotoService littlePhotoService) {
         this.resourceLoader = resourceLoader;
         this.userGalleryRepository = userGalleryRepository;
         this.photoRepository = photoRepository;
+        this.littlePhotoService = littlePhotoService;
     }
 
     public String getCheck() {
@@ -102,6 +106,7 @@ public class UploadPhotoService {
         boolean b = this.uploadFile(f, photoPackage.getPath(), photoPackage.getSize(), photoPackage.getMaxSize());
         if (b) {
             for (MultipartFile fill : f) {
+                littlePhotoService.crop(fill.getOriginalFilename());
                 photoPackage.setSize(photoPackage.getSize() + fill.getSize());
                 photoRepository.setUserInfoById(photoPackage.getSize(), userByLogin.getPhoto().getId());
             }

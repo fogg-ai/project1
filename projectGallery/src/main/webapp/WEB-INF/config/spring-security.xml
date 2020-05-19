@@ -14,6 +14,8 @@
         <sec:intercept-url pattern="/delete/**" access="hasAnyRole('ROLE_USER','ROLE_SUPERUSER')"/>
         <sec:intercept-url pattern="/upload/**" access="hasAnyRole('ROLE_USER','ROLE_SUPERUSER')"/>
         <sec:intercept-url pattern="/gallery/**" access="hasAnyRole('ROLE_USER','ROLE_SUPERUSER')"/>
+        <sec:intercept-url pattern="/photoMin/**" access="hasAnyRole('ROLE_USER','ROLE_SUPERUSER')"/>
+        <sec:intercept-url pattern="/deletePhoto/**" access="hasAnyRole('ROLE_USER','ROLE_SUPERUSER')"/>
         <sec:intercept-url pattern="/buyplace/**" access="hasAnyRole('ROLE_USER')"/>
         <sec:intercept-url pattern="/**" access="permitAll()"/>
 

@@ -44,7 +44,8 @@ public class UserServiseTest {
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     void testFindOneAndSave() {
         userGalleryRepository.save(new UserGallery(null, "test", "test@gmail.com","test",
-                new Role(null,"ROLE_USER",new UserGallery()),new Photo(null,"path","path",123,2000000000,new UserGallery())));
+                new Role(null,"ROLE_USER",new UserGallery()),new Photo(null,"path","path","minPhotoPath",
+                "minPhotoUrl",123,2000000000,new UserGallery())));
 
         UserGalleryDto userGalleryDto = userGalleryService.findOne(1).get();
 
@@ -65,11 +66,14 @@ public class UserServiseTest {
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     void testDelete() {
         userGalleryRepository.save(new UserGallery(null, "test", "test@gmail.com","test",
-                new Role(null,"ROLE_USER",new UserGallery()),new Photo(null,"path","path",123,2000000000,new UserGallery())));
+                new Role(null,"ROLE_USER",new UserGallery()),new Photo(null,"path","path","minPhotoPath",
+                "minPhotoUrl",123,2000000000,new UserGallery())));
         userGalleryRepository.save(new UserGallery(null, "test1", "test1@gmail.com","test1",
-                new Role(null,"ROLE_SUPERUSER",new UserGallery()),new Photo(null,"path1","path1",123,2000000000,new UserGallery())));
+                new Role(null,"ROLE_SUPERUSER",new UserGallery()),new Photo(null,"path1","path1","minPhotoPath",
+                "minPhotoUrl",123,2000000000,new UserGallery())));
         userGalleryRepository.save(new UserGallery(null, "test2", "test2@gmail.com","test2",
-                new Role(null,"ROLE_USER",new UserGallery()),new Photo(null,"path2","path2",123,2000000000,new UserGallery())));
+                new Role(null,"ROLE_USER",new UserGallery()),new Photo(null,"path2","path2","minPhotoPath",
+                "minPhotoUrl",123,2000000000,new UserGallery())));
 
         userGalleryRepository.findAll().size();
         assertEquals(9, userGalleryRepository.findAll().size());

@@ -30,7 +30,8 @@ public class UserGalleryMapperTest {
     @Test
     void toEntity() {
         UserGalleryDto userGalleryDto = new UserGalleryDto(1, "test", "test@gmail.com","test",
-                new RoleDto(1,"ROLE_USER",new UserGallery()),new PhotoDto(1,"path","path",123,1000000000,new UserGalleryDto()));
+                new RoleDto(1,"ROLE_USER",new UserGallery()),new PhotoDto(1,"path","path","minPhotoPath",
+                "minPhotoUrl",123,1000000000,new UserGalleryDto()));
         UserGallery userGallery = mapper.toEntity(userGalleryDto);
         assertNotNull(userGallery);
         assertEquals("test", userGallery.getLogin());
@@ -51,7 +52,8 @@ public class UserGalleryMapperTest {
     void toDto() {
 
         UserGallery userGallery = new UserGallery(1, "test", "test@gmail.com","test",
-                new Role(1,"ROLE_USER",null),new Photo(1,"path","path",123,2000000000,null));
+                new Role(1,"ROLE_USER",null),new Photo(1,"path","path","minPhotoPath",
+                "minPhotoUrl",123,2000000000,null));
         UserGalleryDto UserGalleryDto = mapper.toDto(userGallery);
 
         assertNotNull(UserGalleryDto);

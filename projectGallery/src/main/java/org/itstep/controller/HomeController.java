@@ -8,7 +8,9 @@ import org.itstep.repository.UserGalleryRepository;
 import org.itstep.service.dto.UserGalleryDto;
 import org.itstep.service.UserGalleryService;
 import org.itstep.service.servisePhoto.FindDirectoryPhotoService;
+import org.itstep.service.servisePhoto.LittlePhotoService;
 import org.itstep.service.servisePhoto.UploadPhotoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,15 +27,20 @@ public class HomeController {
 
     final
     UserGalleryRepository userGalleryRepository;
+
     final
     UploadPhotoService uploadPhotoService;
 
+    final
+    LittlePhotoService littlePhotoService;
+
     public HomeController(UserGalleryService userGalleryService, UserGalleryRepository userGalleryRepository,
-                          FindDirectoryPhotoService findDirectoryPhotoService, UploadPhotoService uploadPhotoService) {
+                          FindDirectoryPhotoService findDirectoryPhotoService, UploadPhotoService uploadPhotoService, LittlePhotoService littlePhotoService) {
         this.userGalleryService = userGalleryService;
         this.userGalleryRepository = userGalleryRepository;
         this.findDirectoryPhotoService = findDirectoryPhotoService;
         this.uploadPhotoService = uploadPhotoService;
+        this.littlePhotoService = littlePhotoService;
     }
 
 
@@ -63,6 +70,7 @@ public class HomeController {
                 Precision.round(userGalleryRepository.findUserByLogin(name).getPhoto().getMaxSize() * 0.000001,
                         0));
         model.addAttribute("pathList", findDirectoryPhotoService.findPath());
+        model.addAttribute("pathListPhotoMin", littlePhotoService.findPath());
         if(path != null) {
             uploadPhotoService.openSourcePhoto(path);
             model.addAttribute("pathOpenPhoto", findDirectoryPhotoService.findOpenPath(path));

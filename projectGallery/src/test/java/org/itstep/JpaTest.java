@@ -41,7 +41,8 @@ public class JpaTest {
     void getUserGallery() {
         assertNotNull(userGalleryRepository);
         userGalleryRepository.save(new UserGallery(null, "test", "test@gmail.com","test",
-                new Role(null,"ROLE_USER",new UserGallery()),new Photo(null,"path","path",123,2000000000,new UserGallery())));
+                new Role(null,"ROLE_USER",new UserGallery()),new Photo(null,"path","path","minPhotoPath",
+                "minPhotoUrl",123,2000000000,new UserGallery())));
 
 
         UserGallery one = userGalleryRepository.getOne(1);
@@ -53,7 +54,8 @@ public class JpaTest {
     @Transactional
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     void getPhoto() {
-        photoRepository.save(new Photo(null,"path","path",123,2000000000,new UserGallery()));
+        photoRepository.save(new Photo(null,"path","path","minPhotoPath",
+                "minPhotoUrl",123,2000000000,new UserGallery()));
 
         Photo one = photoRepository.getOne(1);
         assertEquals("path", one.getPath());

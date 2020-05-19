@@ -94,26 +94,29 @@
                 <c:if test="${param.path != null}">
                 <span class="blockPhoto">
                 <a v-bind:class="path" id="path" href="<spring:url value="${pathOpenPhoto}"/>">
-                    <c:if test='${!pathOpenPhoto.equals("There is no such photo")}'>http://localhost:8080</c:if>
-                        ${pathOpenPhoto}</a>
+                    <c:if test='${!pathOpenPhoto.equals("There is no such photo")}'>http://localhost:8080</c:if>${pathOpenPhoto}</a>
                 <button title="Click to copy" class="buttonCopy"><h1>⎘</h1></button>
                 </span>
                 </c:if>
             </div>
-            <c:forEach items="${pathList}" var="item" varStatus="loop">
+            <c:forEach items="${pathListPhotoMin}" var="item1" varStatus="loop1">
             <span class="holder">
-                <img src="<spring:url value="${item}" />">
-                <div class="block">
-                    <h2>
-                        <a class="infoImage" title="Delete"
-                           href="/deletePhoto?path=<spring:url value="${item}"/>">🗑</a>
-                        <a class="infoImage" title="View" href="<spring:url value="${item}"/>">ᐈ</a>
-                        <a class="infoImage" title="Share this"
-                           href="/gallery/?path=<spring:url value="${item}"/>">ᕮᕭ</a>
-                        <a class="infoImage download" title="Download"
-                           href="/download?path=<spring:url value="${item}"/>">&#10506;</a>
-                    </h2>
-                </div>
+                    <img src="<spring:url value="${item1}" />">
+                <c:forEach items="${pathList}" var="item" varStatus="loop">
+                    <c:if test="${loop.count == loop1.count}">
+                        <div class="block">
+                            <h2>
+                                <a class="infoImage" title="Delete"
+                                   href="/deletePhoto?path=<spring:url value="${item}"/>">🗑</a>
+                                <a class="infoImage" title="View" href="<spring:url value="${item}"/>">ᐈ</a>
+                                <a class="infoImage" title="Share this"
+                                   href="/gallery/?path=<spring:url value="${item}"/>">ᕮᕭ</a>
+                                <a class="infoImage download" title="Download"
+                                   href="/download?path=<spring:url value="${item}"/>">&#10506;</a>
+                            </h2>
+                        </div>
+                    </c:if>
+                </c:forEach>
             </span>
             </c:forEach>
 

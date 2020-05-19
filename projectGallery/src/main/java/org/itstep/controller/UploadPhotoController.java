@@ -5,6 +5,7 @@ import org.itstep.domain.UserGallery;
 import org.itstep.repository.PhotoRepository;
 import org.itstep.repository.RoleRepository;
 import org.itstep.repository.UserGalleryRepository;
+import org.itstep.service.servisePhoto.LittlePhotoService;
 import org.itstep.service.servisePhoto.UploadPhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -38,7 +39,9 @@ public class UploadPhotoController {
     final
     RoleRepository roleRepository;
 
-    public UploadPhotoController(UploadPhotoService uploadPhotoService, UserGalleryRepository userGalleryRepository, PhotoRepository photoRepository, RoleRepository roleRepository) {
+
+
+    public UploadPhotoController(UploadPhotoService uploadPhotoService, UserGalleryRepository userGalleryRepository, PhotoRepository photoRepository, RoleRepository roleRepository, LittlePhotoService littlePhotoService) {
         this.uploadPhotoService = uploadPhotoService;
         this.userGalleryRepository = userGalleryRepository;
         this.photoRepository = photoRepository;
@@ -48,6 +51,7 @@ public class UploadPhotoController {
     @PostMapping("/upload")
     public String upload(@RequestParam("photo") List<MultipartFile> f, Model model) {
        uploadPhotoService.operationFile(f);
+
         return "redirect:/gallery";
     }
 

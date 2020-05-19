@@ -59,4 +59,22 @@ public class DeleteService {
             return false;
         }
     }
+    public boolean minPhoto(String path) {
+        UserGallery user = (UserGallery) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String name = user.getLogin();
+        UserGallery userByLogin = userGalleryRepository.findUserByLogin(name);
+        Photo photoPackage = userByLogin.getPhoto();
+
+        int i = path.lastIndexOf('/');
+        File file = new File(userByLogin.getPhoto().getMinPhotoPath() + path.substring(i));
+
+        if(file.exists()) {
+            photoPackage.setSize(photoPackage.getSize() - file.length());
+            photoRepository.setUserInfoById(photoPackage.getSize(), userByLogin.getPhoto().getId());
+            file.delete();
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

@@ -19,6 +19,8 @@ public class DeletePhotoController {
         deleteService.deleteGet(path);
 
         deleteService.deleteOpenPhoto(path);
+
+        deleteService.minPhoto(path);
         return "redirect:/gallery";
     }
 }

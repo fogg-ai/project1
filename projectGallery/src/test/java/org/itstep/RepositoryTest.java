@@ -32,7 +32,8 @@ public class RepositoryTest {
     void getFindUserByLoginTest() {
         assertNotNull(userGalleryRepository);
         userGalleryRepository.save(new UserGallery(null, "123", "test@gmail.com","test",
-                new Role(null,"ROLE_USER",new UserGallery()),new Photo(null,"path","path",123,
+                new Role(null,"ROLE_USER",new UserGallery()),new Photo(null,"path","path","minPhotoPath",
+                "minPhotoUrl",123,
                 2000000000,new UserGallery())));
 
         UserGallery all = userGalleryRepository.findUserByLogin("123");
