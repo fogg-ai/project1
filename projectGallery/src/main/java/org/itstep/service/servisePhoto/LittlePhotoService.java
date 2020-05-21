@@ -40,10 +40,13 @@ public class LittlePhotoService {
         int height = originalImage.getHeight();
         int width = originalImage.getWidth();
 
-        int targetWidth = (int) (width * 0.4);
-        int targetHeight = (int) (height * 0.4);
+
+        int targetWidth = (int) (width * 0.6);
+        int targetHeight = (int) (height * 0.6);
         int xc = (width - targetWidth) / 2;
         int yc = (height - targetHeight) / 2;
+
+
         if (height < 230) {
             BufferedImage croppedImage = originalImage.getSubimage(
                     xc,
@@ -57,7 +60,6 @@ public class LittlePhotoService {
 
             }
         } else if (width < 170) {
-
             BufferedImage croppedImage = originalImage.getSubimage(
                     0,
                     yc,
@@ -84,17 +86,7 @@ public class LittlePhotoService {
                 return false;
             }
         } else if (width > height) {
-
-            int w = originalImage.getWidth(), h = originalImage.getHeight();
-            GraphicsConfiguration gc = getDefaultConfiguration();
-            BufferedImage result = gc.createCompatibleImage(w, h);
-            Graphics2D g = result.createGraphics();
-            g.rotate(Math.toRadians(90), w/2, h/2);
-            g.drawRenderedImage(originalImage, null);
-            g.dispose();
-
-            BufferedImage croppedImage = result.getSubimage(xc, yc-300, targetWidth, targetHeight);
-
+            BufferedImage croppedImage = originalImage.getSubimage(xc, yc-300, targetWidth, targetHeight);
 
             try {
                 return ImageIO.write(croppedImage, "jpg", getResourcePathFile(file));
@@ -106,11 +98,6 @@ public class LittlePhotoService {
         return true;
     }
 
-    public GraphicsConfiguration getDefaultConfiguration() {
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice gd = ge.getDefaultScreenDevice();
-        return gd.getDefaultConfiguration();
-    }
 
     private File getResource(String file) {
         UserGallery user = (UserGallery) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
