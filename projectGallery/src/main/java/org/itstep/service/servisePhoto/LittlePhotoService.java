@@ -57,7 +57,8 @@ public class LittlePhotoService {
             try {
                 return ImageIO.write(croppedImage, "jpg", getResourcePathFile(file));
             } catch (IOException e) {
-
+                e.printStackTrace();
+                return false;
             }
         } else if (width < 170) {
             BufferedImage croppedImage = originalImage.getSubimage(
