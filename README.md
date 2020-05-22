@@ -32,13 +32,15 @@
 4. Hibernate
 5. MySqlDB
 6. Vue.js
+7. JQuery
+8. JS
 
 ## Развертывание
 
 1. Установить Tomcat
 2. Cоздание папки photo в webapp
 3. Cоздание папки openPhoto в webapp
-
+4. Cоздание папки photoMin в webapp
 
 
 
