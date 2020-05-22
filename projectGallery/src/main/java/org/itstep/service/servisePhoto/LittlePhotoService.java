@@ -87,7 +87,7 @@ public class LittlePhotoService {
                 return false;
             }
         } else if (width > height) {
-            BufferedImage croppedImage = originalImage.getSubimage(xc, yc-300, targetWidth, targetHeight);
+            BufferedImage croppedImage = originalImage.getSubimage(xc, yc, targetWidth, targetHeight);
 
             try {
                 return ImageIO.write(croppedImage, "jpg", getResourcePathFile(file));

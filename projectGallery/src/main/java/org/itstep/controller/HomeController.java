@@ -63,9 +63,15 @@ public class HomeController {
         UserGallery principal = (UserGallery) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String name = principal.getLogin();
         model.addAttribute("message", uploadPhotoService.getCheck());
-        model.addAttribute("size",
-                Precision.round(userGalleryRepository.findUserByLogin(name).getPhoto().getSize() * 0.000001,
-                        1));
+        if(userGalleryRepository.findUserByLogin(name).getPhoto().getSize() <= 0) {
+            model.addAttribute("size",
+                    Precision.round(0,
+                            1));
+        }else{
+            model.addAttribute("size",
+                    Precision.round(userGalleryRepository.findUserByLogin(name).getPhoto().getSize() * 0.000001,
+                            1));
+        }
         model.addAttribute("sizeMax",
                 Precision.round(userGalleryRepository.findUserByLogin(name).getPhoto().getMaxSize() * 0.000001,
                         0));
