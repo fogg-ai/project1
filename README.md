@@ -32,6 +32,8 @@
 4. Hibernate
 5. MySqlDB
 6. Vue.js
+7. JQuery
+8. JS
 
 ## Развертывание
 
