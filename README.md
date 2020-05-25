@@ -41,6 +41,8 @@
 2. Cоздание папки photo в webapp
 3. Cоздание папки openPhoto в webapp
 4. Cоздание папки photoMin в webapp
+5. xampp для mysql 
+6. mysql порт 3307 
 
 
 
