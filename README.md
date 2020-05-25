@@ -43,6 +43,6 @@
 4. Cоздание папки photoMin в webapp
 5. xampp для mysql 
 6. mysql порт 3307 
-
+7. cоздание базы данных с именем usergallery(create database usergallery;)
 
 
