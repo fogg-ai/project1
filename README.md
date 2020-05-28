@@ -37,7 +37,7 @@
 
 ## Развертывание
 
-1. Установить Tomcat
+1. Установить Jetty
 2. Cоздание папки photo в webapp
 3. Cоздание папки openPhoto в webapp
 4. Cоздание папки photoMin в webapp
